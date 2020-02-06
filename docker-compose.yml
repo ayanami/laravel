@@ -31,6 +31,8 @@ services:
             - TZ=${TZ}
     db:
         image: mysql:8.0
+        ports:
+            - ${DB_PORT}:3306
         volumes:
             - db-store:/var/lib/mysql
             - ./logs:/var/log/mysql
