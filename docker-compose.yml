@@ -17,6 +17,8 @@ services:
             - DB_USERNAME=${DB_USER}
             - DB_PASSWORD=${DB_PASS}
             - TZ=${TZ}
+            - MAIL_HOST=${MAIL_HOST}
+            - MAIL_PORT=${MAIL_PORT}
     web:
         image: nginx:1.17-alpine
         depends_on:
