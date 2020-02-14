@@ -69023,15 +69023,50 @@ function (_Component) {
   _inherits(Shops, _Component);
 
   function Shops() {
+    var _this;
+
     _classCallCheck(this, Shops);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Shops).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Shops).call(this));
+    _this.state = {
+      shops: []
+    };
+    return _this;
   }
 
   _createClass(Shops, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      axios.get('/api/shops').then(function (response) {
+        console.log(response);
+
+        _this2.setState({
+          shops: response.data
+        });
+      })["catch"](function (e) {
+        console.log("error: " + e);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "shops by react component");
+      return this.state.shops.map(function (shop) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+          key: shop.id
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, shop.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "label"
+        }, shop.rate)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: "#"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          className: "fa fa-edit",
+          "aria-hidden": "true",
+          style: {
+            fontSize: "20px"
+          }
+        }))));
+      });
     }
   }]);
 

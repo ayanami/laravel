@@ -23,7 +23,7 @@ class ShopsTableSeeder extends Seeder
             ],
             [
                 'name' => 'マーチャオ北千住',
-                'rate' => 0.5,
+                'rate' => 1.0,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]
