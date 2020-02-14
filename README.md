@@ -1,10 +1,6 @@
 # laravel
 
 ## mail
-$ docker-compose exec app ash  
-$ sed -i -e "s/MAIL_HOST=.*/MAIL_HOST=mail/" .env  
-$ sed -i -e "s/MAIL_PORT=.*/MAIL_PORT=1025/" .env  
-  
 $ php artisan tinker  
 Mail::raw('test mail',function($message){$message->to('test@example.com')->subject('test');});  
 http://localhost:3504  
