@@ -19,6 +19,8 @@ services:
             - TZ=${TZ}
             - MAIL_HOST=${MAIL_HOST}
             - MAIL_PORT=${MAIL_PORT}
+            - HTTP_PROXY=${PROXY}
+            - HTTPS_PROXY=${PROXY}
     web:
         image: nginx:1.17-alpine
         depends_on:
