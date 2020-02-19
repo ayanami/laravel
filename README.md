@@ -2,7 +2,7 @@
 
 ## mail
 $ php artisan tinker  
-Mail::raw('test mail',function($message){$message->to('test@example.com')->subject('test');});  
+Mail::raw('test mail', function($message){$message->to('test@example.com')->subject('test');});  
 http://localhost:3504  
 
 ## update react component
