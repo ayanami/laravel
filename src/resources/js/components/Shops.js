@@ -1,28 +1,18 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
+import * as actions from '../actions/shops.action';
+import { bindActionCreators } from 'redux';
 
-export default class Shops extends Component {
+class Shops extends Component {
     constructor() {
         super();
-        this.state = {
-            shops: []
-        }
     }
     componentDidMount() {
-        axios
-            .get('/api/shops')
-            .then(response => {
-                console.log(response);
-                this.setState({
-                    shops: response.data
-                });
-            }).catch(e => {
-                console.log("error: " + e);
-            });
+        this.props.init();
     }
     render() {
         return (
-            this.state.shops.map(shop => {
+            this.props.state.shops.map(shop => {
                 return (
                     <tr key={shop.id}>
                         <td>{shop.name}</td>
@@ -41,6 +31,14 @@ export default class Shops extends Component {
     }
 }
 
-if (document.getElementById('shops')) {
-    ReactDOM.render(<Shops />, document.getElementById('shops'));
+const mapStateToProps = state => {
+    return {
+        state: state.shops,
+    }
 }
+
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators(actions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Shops);
