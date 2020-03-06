@@ -18,6 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => 'api'], function() {
-    Route::get('/shops', 'Api\ShopsController@get');
+    Route::get('/shop/list', 'Api\ShopController@list');
 });
 

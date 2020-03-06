@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions/shops.action';
+import * as actions from '../../actions/shop.action';
 import { bindActionCreators } from 'redux';
 
-class Shops extends Component {
+class ShopList extends Component {
     constructor() {
         super();
     }
@@ -11,6 +11,7 @@ class Shops extends Component {
         this.props.init();
     }
     render() {
+        console.log(this.props.state);
         return (
             this.props.state.shops.map(shop => {
                 return (
@@ -41,4 +42,4 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators(actions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Shops);
+export default connect(mapStateToProps, mapDispatchToProps)(ShopList);

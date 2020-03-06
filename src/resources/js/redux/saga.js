@@ -1,6 +1,6 @@
 import { all, call } from 'redux-saga/effects';
-import shopsSaga from '../sagas/shops.saga';
+import shopSaga from '../sagas/shop.saga';
 
 export default function* saga() {
-    yield all([call(shopsSaga)]);
+    yield all([call(shopSaga)]);
 }

@@ -4,11 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Shop;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
-class ShopsController extends Controller
+class ShopController extends Controller
 {
-    public function get()
+    public function list()
     {
         return Shop::all();
     }
