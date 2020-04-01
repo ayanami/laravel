@@ -23,4 +23,4 @@ Route::get('/shop/list', function() {
 })->middleware('verified');
 Route::get('/shop/create', function() {
     return view('shop/create');
-})->middleware('verified');
+})->middleware('verified')->name('shop.create');

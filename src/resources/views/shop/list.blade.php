@@ -6,7 +6,7 @@
         <div class="panel-heading">店舗</div>
         <div class="panel-body">
             <div class="text-right">
-                <a href="#" class="btn btn-default btn-block">追加</a>
+                <a href="{{ route('shop.create') }}" class="btn btn-default btn-block">追加</a>
             </div>
         </div>
         <table class="table">
@@ -17,7 +17,7 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody id="shops"></tbody>
+            <tbody id="shopList"></tbody>
         </table>
     </div>
 </div>
