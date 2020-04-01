@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../actions/shop.action';
 import { bindActionCreators } from 'redux';
+import * as actions from '../../actions/shop/shop.list.action';
 
 class ShopList extends Component {
     constructor() {
         super();
     }
     componentDidMount() {
-        this.props.init();
+        this.props.initShopList();
     }
     render() {
         console.log(this.props.state);

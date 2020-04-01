@@ -80672,25 +80672,43 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/js/actions/shop.action.js":
-/*!*********************************************!*\
-  !*** ./resources/js/actions/shop.action.js ***!
-  \*********************************************/
-/*! exports provided: INIT, init, GET, get */
+/***/ "./resources/js/actions/shop/shop.create.action.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/actions/shop/shop.create.action.js ***!
+  \*********************************************************/
+/*! exports provided: INIT_SHOP_CREATE, initShopCreate */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "INIT", function() { return INIT; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "init", function() { return init; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET", function() { return GET; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "get", function() { return get; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "INIT_SHOP_CREATE", function() { return INIT_SHOP_CREATE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initShopCreate", function() { return initShopCreate; });
 /* harmony import */ var redux_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-actions */ "./node_modules/redux-actions/es/index.js");
 
-var INIT = 'INIT';
-var init = Object(redux_actions__WEBPACK_IMPORTED_MODULE_0__["createAction"])(INIT);
-var GET = 'GET';
-var get = Object(redux_actions__WEBPACK_IMPORTED_MODULE_0__["createAction"])(GET);
+var INIT_SHOP_CREATE = 'INIT_SHOP_CREATE';
+var initShopCreate = Object(redux_actions__WEBPACK_IMPORTED_MODULE_0__["createAction"])(INIT_SHOP_CREATE);
+
+/***/ }),
+
+/***/ "./resources/js/actions/shop/shop.list.action.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/actions/shop/shop.list.action.js ***!
+  \*******************************************************/
+/*! exports provided: INIT_SHOP_LIST, initShopList, GET_SHOP_LIST, getShopList */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "INIT_SHOP_LIST", function() { return INIT_SHOP_LIST; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initShopList", function() { return initShopList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_SHOP_LIST", function() { return GET_SHOP_LIST; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getShopList", function() { return getShopList; });
+/* harmony import */ var redux_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-actions */ "./node_modules/redux-actions/es/index.js");
+
+var INIT_SHOP_LIST = 'INIT_SHOP_LIST';
+var initShopList = Object(redux_actions__WEBPACK_IMPORTED_MODULE_0__["createAction"])(INIT_SHOP_LIST);
+var GET_SHOP_LIST = 'GET_SHOP_LIST';
+var getShopList = Object(redux_actions__WEBPACK_IMPORTED_MODULE_0__["createAction"])(GET_SHOP_LIST);
 
 /***/ }),
 
@@ -80805,10 +80823,10 @@ if (document.getElementById('example')) {
 
 /***/ }),
 
-/***/ "./resources/js/components/shop/create.js":
-/*!************************************************!*\
-  !*** ./resources/js/components/shop/create.js ***!
-  \************************************************/
+/***/ "./resources/js/components/shop/shop.create.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/shop/shop.create.js ***!
+  \*****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80817,8 +80835,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_shop_action__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/shop.action */ "./resources/js/actions/shop.action.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _actions_shop_shop_create_action__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/shop/shop.create.action */ "./resources/js/actions/shop/shop.create.action.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -80856,28 +80874,14 @@ function (_Component) {
   _createClass(ShopCreate, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.init();
+      this.props.initShopCreate();
       console.log(this.props);
     }
   }, {
     key: "render",
     value: function render() {
       console.log(this.props.state);
-      return this.props.state.shops.map(function (shop) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-          key: shop.id
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, shop.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "label"
-        }, shop.rate)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-          href: "#"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-          className: "fa fa-edit",
-          "aria-hidden": "true",
-          style: {
-            fontSize: "20px"
-          }
-        }))));
-      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "hoge");
     }
   }]);
 
@@ -80886,22 +80890,22 @@ function (_Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    state: state.shops
+    state: state.shop
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return Object(redux__WEBPACK_IMPORTED_MODULE_3__["bindActionCreators"])(_actions_shop_action__WEBPACK_IMPORTED_MODULE_2__, dispatch);
+  return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])(_actions_shop_shop_create_action__WEBPACK_IMPORTED_MODULE_3__, dispatch);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(ShopCreate));
 
 /***/ }),
 
-/***/ "./resources/js/components/shop/list.js":
-/*!**********************************************!*\
-  !*** ./resources/js/components/shop/list.js ***!
-  \**********************************************/
+/***/ "./resources/js/components/shop/shop.list.js":
+/*!***************************************************!*\
+  !*** ./resources/js/components/shop/shop.list.js ***!
+  \***************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80910,8 +80914,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_shop_action__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/shop.action */ "./resources/js/actions/shop.action.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/shop/shop.list.action */ "./resources/js/actions/shop/shop.list.action.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -80949,13 +80953,12 @@ function (_Component) {
   _createClass(ShopList, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.init();
+      this.props.initShopList();
     }
   }, {
     key: "render",
     value: function render() {
       console.log(this.props.state);
-      console.log(this.props.state.router);
       return this.props.state.shops.map(function (shop) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
           key: shop.id
@@ -80984,7 +80987,7 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return Object(redux__WEBPACK_IMPORTED_MODULE_3__["bindActionCreators"])(_actions_shop_action__WEBPACK_IMPORTED_MODULE_2__, dispatch);
+  return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])(_actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_3__, dispatch);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(ShopList));
@@ -81006,10 +81009,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var connected_react_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! connected-react-router */ "./node_modules/connected-react-router/esm/index.js");
-/* harmony import */ var _components_shop_list__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/shop/list */ "./resources/js/components/shop/list.js");
-/* harmony import */ var _components_shop_create__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/shop/create */ "./resources/js/components/shop/create.js");
-/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../redux/store */ "./resources/js/redux/store.js");
-/* harmony import */ var _redux_history__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../redux/history */ "./resources/js/redux/history.js");
+/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../redux/store */ "./resources/js/redux/store.js");
+/* harmony import */ var _redux_history__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../redux/history */ "./resources/js/redux/history.js");
+/* harmony import */ var _components_shop_shop_list__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/shop/shop.list */ "./resources/js/components/shop/shop.list.js");
+/* harmony import */ var _components_shop_shop_create__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/shop/shop.create */ "./resources/js/components/shop/shop.create.js");
 
 
 
@@ -81018,15 +81021,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var store = Object(_redux_store__WEBPACK_IMPORTED_MODULE_6__["default"])();
+var store = Object(_redux_store__WEBPACK_IMPORTED_MODULE_4__["default"])();
 var shopList = document.getElementById('shopList');
 
 if (shopList) {
   Object(react_dom__WEBPACK_IMPORTED_MODULE_1__["render"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_2__["Provider"], {
     store: store
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(connected_react_router__WEBPACK_IMPORTED_MODULE_3__["ConnectedRouter"], {
-    history: _redux_history__WEBPACK_IMPORTED_MODULE_7__["default"]
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_shop_list__WEBPACK_IMPORTED_MODULE_4__["default"], null))), shopList);
+    history: _redux_history__WEBPACK_IMPORTED_MODULE_5__["default"]
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_shop_shop_list__WEBPACK_IMPORTED_MODULE_6__["default"], null))), shopList);
 }
 
 var shopCreate = document.getElementById('shopCreate');
@@ -81036,34 +81039,64 @@ if (shopCreate) {
   Object(react_dom__WEBPACK_IMPORTED_MODULE_1__["render"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_2__["Provider"], {
     store: store
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(connected_react_router__WEBPACK_IMPORTED_MODULE_3__["ConnectedRouter"], {
-    history: _redux_history__WEBPACK_IMPORTED_MODULE_7__["default"]
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_shop_create__WEBPACK_IMPORTED_MODULE_5__["default"], null))), shopCreate);
+    history: _redux_history__WEBPACK_IMPORTED_MODULE_5__["default"]
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_shop_shop_create__WEBPACK_IMPORTED_MODULE_7__["default"], null))), shopCreate);
 }
 
 /***/ }),
 
-/***/ "./resources/js/reducers/shop.reducer.js":
-/*!***********************************************!*\
-  !*** ./resources/js/reducers/shop.reducer.js ***!
-  \***********************************************/
+/***/ "./resources/js/reducers/shop/shop.create.reducer.js":
+/*!***********************************************************!*\
+  !*** ./resources/js/reducers/shop/shop.create.reducer.js ***!
+  \***********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _actions_shop_action__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/shop.action */ "./resources/js/actions/shop.action.js");
+/* harmony import */ var _actions_shop_shop_create_action__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/shop/shop.create.action */ "./resources/js/actions/shop/shop.create.action.js");
 
 var initialState = {
-  type: _actions_shop_action__WEBPACK_IMPORTED_MODULE_0__["INIT"],
-  shops: []
+  type: _actions_shop_shop_create_action__WEBPACK_IMPORTED_MODULE_0__["INIT_SHOP_CREATE"],
+  shop: {}
 };
 
-var shopReducer = function shopReducer() {
+var shopCreateReducer = function shopCreateReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
-    case _actions_shop_action__WEBPACK_IMPORTED_MODULE_0__["GET"]:
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (shopCreateReducer);
+
+/***/ }),
+
+/***/ "./resources/js/reducers/shop/shop.list.reducer.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/reducers/shop/shop.list.reducer.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/shop/shop.list.action */ "./resources/js/actions/shop/shop.list.action.js");
+
+var initialState = {
+  type: _actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_0__["INIT_SHOP_LIST"],
+  shops: []
+};
+
+var shopListReducer = function shopListReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_0__["GET_SHOP_LIST"]:
       return Object.assign({}, state, {
         type: action.type,
         shops: action.data
@@ -81074,7 +81107,7 @@ var shopReducer = function shopReducer() {
   }
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (shopReducer);
+/* harmony default export */ __webpack_exports__["default"] = (shopListReducer);
 
 /***/ }),
 
@@ -81105,7 +81138,9 @@ var history = Object(history__WEBPACK_IMPORTED_MODULE_0__["createBrowserHistory"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var connected_react_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! connected-react-router */ "./node_modules/connected-react-router/esm/index.js");
-/* harmony import */ var _reducers_shop_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../reducers/shop.reducer */ "./resources/js/reducers/shop.reducer.js");
+/* harmony import */ var _reducers_shop_shop_list_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../reducers/shop/shop.list.reducer */ "./resources/js/reducers/shop/shop.list.reducer.js");
+/* harmony import */ var _reducers_shop_shop_create_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../reducers/shop/shop.create.reducer */ "./resources/js/reducers/shop/shop.create.reducer.js");
+
 
 
 
@@ -81113,7 +81148,8 @@ __webpack_require__.r(__webpack_exports__);
 var reducer = function reducer(history) {
   return Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
     router: Object(connected_react_router__WEBPACK_IMPORTED_MODULE_1__["connectRouter"])(history),
-    shops: _reducers_shop_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+    shops: _reducers_shop_shop_list_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+    shop: _reducers_shop_shop_create_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
   });
 };
 
@@ -81134,12 +81170,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-saga/effects */ "./node_modules/redux-saga/dist/redux-saga-effects-npm-proxy.esm.js");
-/* harmony import */ var _sagas_shop_saga__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../sagas/shop.saga */ "./resources/js/sagas/shop.saga.js");
+/* harmony import */ var _sagas_shop_shop_list_saga__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../sagas/shop/shop.list.saga */ "./resources/js/sagas/shop/shop.list.saga.js");
+/* harmony import */ var _sagas_shop_shop_create_saga__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../sagas/shop/shop.create.saga */ "./resources/js/sagas/shop/shop.create.saga.js");
 
 
 var _marked =
 /*#__PURE__*/
 _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(saga);
+
 
 
 
@@ -81149,7 +81187,7 @@ function saga() {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["all"])([Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_sagas_shop_saga__WEBPACK_IMPORTED_MODULE_2__["default"])]);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["all"])([Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_sagas_shop_shop_list_saga__WEBPACK_IMPORTED_MODULE_2__["default"]), Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_sagas_shop_shop_create_saga__WEBPACK_IMPORTED_MODULE_3__["default"])]);
 
         case 2:
         case "end":
@@ -81195,71 +81233,33 @@ function initialize() {
 
 /***/ }),
 
-/***/ "./resources/js/sagas/shop.saga.js":
-/*!*****************************************!*\
-  !*** ./resources/js/sagas/shop.saga.js ***!
-  \*****************************************/
+/***/ "./resources/js/sagas/shop/shop.create.saga.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/sagas/shop/shop.create.saga.js ***!
+  \*****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return shopSaga; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return shopCreateSaga; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux-saga/effects */ "./node_modules/redux-saga/dist/redux-saga-effects-npm-proxy.esm.js");
-/* harmony import */ var _actions_shop_action__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/shop.action */ "./resources/js/actions/shop.action.js");
+/* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-saga/effects */ "./node_modules/redux-saga/dist/redux-saga-effects-npm-proxy.esm.js");
+/* harmony import */ var _actions_shop_shop_create_action__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/shop/shop.create.action */ "./resources/js/actions/shop/shop.create.action.js");
 
 
 var _marked =
 /*#__PURE__*/
-_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(get),
-    _marked2 =
-/*#__PURE__*/
-_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(shopSaga);
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(shopCreateSaga);
 
 
 
-
-
-var request = function request(path) {
-  return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(path).then(function (response) {
-    var data = response.data;
-    console.log('data => ' + data);
-    return {
-      data: data
-    };
-  })["catch"](function (error) {
-    console.log('error => ' + error);
-    return {
-      error: error
-    };
-  });
-};
-
-function get() {
-  var _ref, data, error;
-
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function get$(_context) {
+function shopCreateSaga() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function shopCreateSaga$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          _context.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_2__["call"])(request, '/api/shop/list');
-
-        case 2:
-          _ref = _context.sent;
-          data = _ref.data;
-          error = _ref.error;
-          _context.next = 7;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_2__["put"])({
-            type: _actions_shop_action__WEBPACK_IMPORTED_MODULE_3__["GET"],
-            data: data
-          });
-
-        case 7:
         case "end":
           return _context.stop();
       }
@@ -81267,13 +81267,70 @@ function get() {
   }, _marked);
 }
 
-function shopSaga() {
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function shopSaga$(_context2) {
+/***/ }),
+
+/***/ "./resources/js/sagas/shop/shop.list.saga.js":
+/*!***************************************************!*\
+  !*** ./resources/js/sagas/shop/shop.list.saga.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return shopListSaga; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-saga/effects */ "./node_modules/redux-saga/dist/redux-saga-effects-npm-proxy.esm.js");
+/* harmony import */ var _utils_connection_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/connection.utils */ "./resources/js/utils/connection.utils.js");
+/* harmony import */ var _actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/shop/shop.list.action */ "./resources/js/actions/shop/shop.list.action.js");
+
+
+var _marked =
+/*#__PURE__*/
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(getShopList),
+    _marked2 =
+/*#__PURE__*/
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(shopListSaga);
+
+
+
+
+
+function getShopList() {
+  var _ref, data;
+
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function getShopList$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          _context.next = 2;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_utils_connection_utils__WEBPACK_IMPORTED_MODULE_2__["request"], '/api/shop/list');
+
+        case 2:
+          _ref = _context.sent;
+          data = _ref.data;
+          _context.next = 6;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])({
+            type: _actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_3__["GET_SHOP_LIST"],
+            data: data
+          });
+
+        case 6:
+        case "end":
+          return _context.stop();
+      }
+    }
+  }, _marked);
+}
+
+function shopListSaga() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function shopListSaga$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
           _context2.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_2__["takeEvery"])(_actions_shop_action__WEBPACK_IMPORTED_MODULE_3__["INIT"], get);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeEvery"])(_actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_3__["INIT_SHOP_LIST"], getShopList);
 
         case 2:
         case "end":
@@ -81282,6 +81339,34 @@ function shopSaga() {
     }
   }, _marked2);
 }
+
+/***/ }),
+
+/***/ "./resources/js/utils/connection.utils.js":
+/*!************************************************!*\
+  !*** ./resources/js/utils/connection.utils.js ***!
+  \************************************************/
+/*! exports provided: request */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "request", function() { return request; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+var request = function request(path) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(path).then(function (response) {
+    var data = response.data;
+    console.log('data => ' + data);
+    return {
+      data: data
+    };
+  })["catch"](function (error) {
+    console.log('error => ' + error);
+    throw new Error(error);
+  });
+};
 
 /***/ }),
 

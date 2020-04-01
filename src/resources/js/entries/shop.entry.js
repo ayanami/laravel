@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import initialize from '../redux/store';
 import history from '../redux/history';
-import ShopList from '../components/shop/list';
-import ShopCreate from '../components/shop/create';
+import ShopList from '../components/shop/shop.list';
+import ShopCreate from '../components/shop/shop.create';
 
 const store = initialize();
 

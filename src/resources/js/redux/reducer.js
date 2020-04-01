@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
-import shopReducer from '../reducers/shop.reducer';
+import shopListReducer from '../reducers/shop/shop.list.reducer';
+import shopCreateReducer from '../reducers/shop/shop.create.reducer';
 
 const reducer = history => combineReducers({
         router: connectRouter(history),
-        shops: shopReducer,
+        shops: shopListReducer,
+        shop: shopCreateReducer,
 });
 
 export default reducer;
