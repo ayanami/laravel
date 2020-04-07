@@ -15,6 +15,7 @@ class ShopList extends Component {
         const items = this.props.state.shops.map(shop => {
             return (
                 <tr key={shop.id}>
+                    <td>{shop.id}</td>
                     <td>{shop.name}</td>
                     <td>
                         <span className="label">{shop.rate}</span>
@@ -38,6 +39,7 @@ class ShopList extends Component {
                 <table className="table">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>名前</th>
                             <th>レート</th>
                             <th></th>
