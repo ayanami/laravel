@@ -18,6 +18,11 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->middleware('verified');
-Route::get('/shops', function() {
-    return view('shops');
-})->middleware('verified');
+
+Route::get('/shop/list', function() {
+    return view('shop/root');
+})->middleware('verified')->name('shop.list');
+
+Route::get('/shop/create', function() {
+    return view('shop/root');
+})->middleware('verified')->name('shop.create');
