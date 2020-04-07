@@ -10,7 +10,7 @@ const shopListReducer = (state = initialState, action) => {
         case actions.GET_SHOP_LIST:
             return Object.assign({}, state, {
                 type: action.type,
-                shops: action.data,
+                shops: action.payload,
             });
         default:
             return state;

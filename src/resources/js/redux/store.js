@@ -4,7 +4,7 @@ import { createLogger } from 'redux-logger';
 import { routerMiddleware } from 'connected-react-router';
 import reducer from './reducer';
 import saga from './saga';
-import history from './history';
+import history from '../react/history';
 
 export default function initialize() {
     const sagaMiddleware = createSagaMiddleware();

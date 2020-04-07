@@ -1,13 +1,21 @@
 import axios from 'axios';
 
-export const request = (path) => axios
+export const get = path => axios
     .get(path)
     .then(response => {
-        const data = response.data;
-        console.log('data => ' + data);
-        return {
-            data
-        }
+        console.log('response => ' + JSON.stringify(response));
+        return { response }
+    })
+    .catch(error => {
+        console.log('error => ' + error);
+        throw new Error(error);
+    });
+
+export const post = (path, request) => axios
+    .post(path, request)
+    .then(response => {
+        console.log('response => ' + JSON.stringify(response));
+        return { response }
     })
     .catch(error => {
         console.log('error => ' + error);
