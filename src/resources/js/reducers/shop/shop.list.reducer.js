@@ -1,3 +1,4 @@
+import { handleActions } from 'redux-actions';
 import * as actions from '../../actions/shop/shop.list.action';
 
 const initialState = {
@@ -5,16 +6,11 @@ const initialState = {
     shops: [],
 }
 
-const shopListReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case actions.GET_SHOP_LIST:
-            return Object.assign({}, state, {
-                type: action.type,
-                shops: action.payload,
-            });
-        default:
-            return state;
-    }
-}
+const shopListReducer = handleActions({
+    GET_SHOP_LIST: (state, action) => ({
+        type: action.type,
+        shops: action.payload
+    })
+}, initialState);
 
 export default shopListReducer;
