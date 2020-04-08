@@ -1,5 +1,5 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { get } from '../../utils/connection.utils';
+import { get } from '../../utils/ajax.utils';
 import * as actions from '../../actions/shop/shop.list.action';
 
 function* getShopList() {

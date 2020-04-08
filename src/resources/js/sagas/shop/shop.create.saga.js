@@ -1,5 +1,5 @@
 import { call, takeLatest } from 'redux-saga/effects';
-import { post } from '../../utils/connection.utils';
+import { post } from '../../utils/ajax.utils';
 import * as actions from '../../actions/shop/shop.create.action';
 import { log } from '../../utils/log.utils';
 
