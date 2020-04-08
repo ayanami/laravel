@@ -1,23 +1,24 @@
 import axios from 'axios';
+import { log } from './log.utils';
 
 export const get = path => axios
     .get(path)
     .then(response => {
-        console.log('response => ' + JSON.stringify(response));
+        log({response: response});
         return { response }
     })
     .catch(error => {
-        console.log('error => ' + error);
+        log({error: error});
         throw new Error(error);
     });
 
 export const post = (path, request) => axios
     .post(path, request)
     .then(response => {
-        console.log('response => ' + JSON.stringify(response));
+        log({response: response});
         return { response }
     })
     .catch(error => {
-        console.log('error => ' + error);
+        log({error: error});
         throw new Error(error);
     });

@@ -1,9 +1,10 @@
 import { call, takeLatest } from 'redux-saga/effects';
 import { post } from '../../utils/connection.utils';
 import * as actions from '../../actions/shop/shop.create.action';
+import { log } from '../../utils/log.utils';
 
 function* postShopList(action) {
-    console.log('action => ' + JSON.stringify(action));
+    log({action: action});
     yield call(post, '/api/shop/create', action.payload.value);
     action.payload.callback();
 }

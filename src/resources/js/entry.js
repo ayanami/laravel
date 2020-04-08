@@ -5,8 +5,8 @@ import { Route, Switch } from 'react-router';
 import { ConnectedRouter } from 'connected-react-router';
 import initialize from './redux/store';
 import history from './react/history';
-import ShopList from './components/shop/shop.list';
-import ShopCreate from './components/shop/shop.create';
+import ShopListContainer from './containers/shop/shop.list.container';
+import ShopCreateContainer from './containers/shop/shop.create.container';
 
 const store = initialize();
 
@@ -16,8 +16,8 @@ if (shopRoot) {
         <Provider store={store}>
             <ConnectedRouter history={history}>
                 <Switch>
-                    <Route exact path="/shop/list" component={ShopList} />
-                    <Route path="/shop/create" component={ShopCreate} />
+                    <Route exact path="/shop/list" component={ShopListContainer} />
+                    <Route path="/shop/create" component={ShopCreateContainer} />
                 </Switch>
             </ConnectedRouter>
         </Provider>,

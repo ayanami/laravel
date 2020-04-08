@@ -3,13 +3,13 @@ import * as actions from '../../actions/shop/shop.list.action';
 
 const initialState = {
     type: actions.INIT_SHOP_LIST,
-    shops: [],
+    payload: [],
 }
 
 const shopListReducer = handleActions({
     GET_SHOP_LIST: (state, action) => ({
         type: action.type,
-        shops: action.payload
+        payload: action.payload
     })
 }, initialState);
 
