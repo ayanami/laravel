@@ -15,6 +15,7 @@ class ShopController extends Controller
 
     public function create(Request $request)
     {
+        // abort(403, 'Unauthorized action.');
         $shop = new Shop();
         $shop->name = $request->name;
         $shop->rate = $request->rate;

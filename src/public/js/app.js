@@ -94214,6 +94214,24 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/actions/error.action.js":
+/*!**********************************************!*\
+  !*** ./resources/js/actions/error.action.js ***!
+  \**********************************************/
+/*! exports provided: NOTIFY_ERROR, notifyError */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NOTIFY_ERROR", function() { return NOTIFY_ERROR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "notifyError", function() { return notifyError; });
+/* harmony import */ var redux_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-actions */ "./node_modules/redux-actions/es/index.js");
+
+var NOTIFY_ERROR = 'NOTIFY_ERROR';
+var notifyError = Object(redux_actions__WEBPACK_IMPORTED_MODULE_0__["createAction"])(NOTIFY_ERROR);
+
+/***/ }),
+
 /***/ "./resources/js/actions/shop/shop.create.action.js":
 /*!*********************************************************!*\
   !*** ./resources/js/actions/shop/shop.create.action.js ***!
@@ -94329,6 +94347,45 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/error.component.js":
+/*!****************************************************!*\
+  !*** ./resources/js/components/error.component.js ***!
+  \****************************************************/
+/*! exports provided: Error */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Error", function() { return Error; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+
+var Error = function Error(_ref) {
+  var children = _ref.children;
+  var error = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
+    return state.error.payload;
+  });
+
+  if (error) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "flex-center position-ref full-height"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "code"
+    }, error.status), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "message",
+      style: {
+        padding: "10px"
+      }
+    }, error.data.message));
+  }
+
+  return children;
+};
 
 /***/ }),
 
@@ -94453,6 +94510,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var ShopListItems = function ShopListItems() {
   var shops = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
+    Object(_utils_log_utils__WEBPACK_IMPORTED_MODULE_2__["log"])({
+      state: state
+    });
     return state.shops.payload;
   });
   Object(_utils_log_utils__WEBPACK_IMPORTED_MODULE_2__["log"])({
@@ -94490,9 +94550,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var redux_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux-form */ "./node_modules/redux-form/es/index.js");
-/* harmony import */ var _components_shop_create_shop_create_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/shop/create/shop.create.component */ "./resources/js/components/shop/create/shop.create.component.js");
-/* harmony import */ var _actions_shop_shop_create_action__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/shop/shop.create.action */ "./resources/js/actions/shop/shop.create.action.js");
-/* harmony import */ var _utils_log_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utils/log.utils */ "./resources/js/utils/log.utils.js");
+/* harmony import */ var _components_error_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/error.component */ "./resources/js/components/error.component.js");
+/* harmony import */ var _components_shop_create_shop_create_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/shop/create/shop.create.component */ "./resources/js/components/shop/create/shop.create.component.js");
+/* harmony import */ var _actions_shop_shop_create_action__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/shop/shop.create.action */ "./resources/js/actions/shop/shop.create.action.js");
+/* harmony import */ var _utils_log_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../utils/log.utils */ "./resources/js/utils/log.utils.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -94510,6 +94571,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -94537,17 +94599,17 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      Object(_utils_log_utils__WEBPACK_IMPORTED_MODULE_5__["log"])({
+      Object(_utils_log_utils__WEBPACK_IMPORTED_MODULE_6__["log"])({
         state: this.props.state
       });
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_shop_create_shop_create_component__WEBPACK_IMPORTED_MODULE_3__["ShopCreate"], this.props);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_error_component__WEBPACK_IMPORTED_MODULE_3__["Error"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_shop_create_shop_create_component__WEBPACK_IMPORTED_MODULE_4__["ShopCreate"], this.props));
     }
   }]);
 
   return ShopCreateContainer;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, _actions_shop_shop_create_action__WEBPACK_IMPORTED_MODULE_4__)(Object(redux_form__WEBPACK_IMPORTED_MODULE_2__["reduxForm"])({
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, _actions_shop_shop_create_action__WEBPACK_IMPORTED_MODULE_5__)(Object(redux_form__WEBPACK_IMPORTED_MODULE_2__["reduxForm"])({
   form: 'shopCreate'
 })(ShopCreateContainer)));
 
@@ -94566,8 +94628,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/shop/shop.list.action */ "./resources/js/actions/shop/shop.list.action.js");
-/* harmony import */ var _components_shop_list_shop_list_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/shop/list/shop.list.component */ "./resources/js/components/shop/list/shop.list.component.js");
-/* harmony import */ var _utils_log_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/log.utils */ "./resources/js/utils/log.utils.js");
+/* harmony import */ var _components_error_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/error.component */ "./resources/js/components/error.component.js");
+/* harmony import */ var _components_shop_list_shop_list_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/shop/list/shop.list.component */ "./resources/js/components/shop/list/shop.list.component.js");
+/* harmony import */ var _utils_log_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utils/log.utils */ "./resources/js/utils/log.utils.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -94585,6 +94648,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -94611,10 +94675,10 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      Object(_utils_log_utils__WEBPACK_IMPORTED_MODULE_4__["log"])({
-        state: this.props.state
+      Object(_utils_log_utils__WEBPACK_IMPORTED_MODULE_5__["log"])({
+        props: this.props
       });
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_shop_list_shop_list_component__WEBPACK_IMPORTED_MODULE_3__["ShopList"], null);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_error_component__WEBPACK_IMPORTED_MODULE_3__["Error"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_shop_list_shop_list_component__WEBPACK_IMPORTED_MODULE_4__["ShopList"], null));
     }
   }]);
 
@@ -94623,7 +94687,7 @@ function (_Component) {
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function (state) {
   return {
-    state: state.shops
+    shops: state.shops
   };
 }, _actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_2__)(ShopListContainer));
 
@@ -94658,14 +94722,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var store = Object(_redux_store__WEBPACK_IMPORTED_MODULE_5__["default"])();
 var shopRoot = document.getElementById('shopRoot');
 
 if (shopRoot) {
   Object(react_dom__WEBPACK_IMPORTED_MODULE_1__["render"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_2__["Provider"], {
-    store: store
+    store: _redux_store__WEBPACK_IMPORTED_MODULE_5__["default"]
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(connected_react_router__WEBPACK_IMPORTED_MODULE_4__["ConnectedRouter"], {
-    history: _react_history__WEBPACK_IMPORTED_MODULE_6__["default"]
+    history: _react_history__WEBPACK_IMPORTED_MODULE_6__["history"]
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_3__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_3__["Route"], {
     exact: true,
     path: "/shop/list",
@@ -94682,15 +94745,39 @@ if (shopRoot) {
 /*!***************************************!*\
   !*** ./resources/js/react/history.js ***!
   \***************************************/
-/*! exports provided: default */
+/*! exports provided: history */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "history", function() { return history; });
 /* harmony import */ var history__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! history */ "./node_modules/history/esm/history.js");
 
 var history = Object(history__WEBPACK_IMPORTED_MODULE_0__["createBrowserHistory"])();
-/* harmony default export */ __webpack_exports__["default"] = (history);
+
+/***/ }),
+
+/***/ "./resources/js/reducers/error.reducer.js":
+/*!************************************************!*\
+  !*** ./resources/js/reducers/error.reducer.js ***!
+  \************************************************/
+/*! exports provided: errorReducer */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "errorReducer", function() { return errorReducer; });
+/* harmony import */ var redux_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-actions */ "./node_modules/redux-actions/es/index.js");
+
+var errorReducer = Object(redux_actions__WEBPACK_IMPORTED_MODULE_0__["handleActions"])({
+  NOTIFY_ERROR: function NOTIFY_ERROR(state, action) {
+    return {
+      payload: action.payload
+    };
+  }
+}, {
+  payload: null
+});
 
 /***/ }),
 
@@ -94698,28 +94785,23 @@ var history = Object(history__WEBPACK_IMPORTED_MODULE_0__["createBrowserHistory"
 /*!*********************************************************!*\
   !*** ./resources/js/reducers/shop/shop.list.reducer.js ***!
   \*********************************************************/
-/*! exports provided: default */
+/*! exports provided: shopListReducer */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shopListReducer", function() { return shopListReducer; });
 /* harmony import */ var redux_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-actions */ "./node_modules/redux-actions/es/index.js");
-/* harmony import */ var _actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/shop/shop.list.action */ "./resources/js/actions/shop/shop.list.action.js");
 
-
-var initialState = {
-  type: _actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_1__["INIT_SHOP_LIST"],
-  payload: []
-};
 var shopListReducer = Object(redux_actions__WEBPACK_IMPORTED_MODULE_0__["handleActions"])({
   GET_SHOP_LIST: function GET_SHOP_LIST(state, action) {
     return {
-      type: action.type,
       payload: action.payload
     };
   }
-}, initialState);
-/* harmony default export */ __webpack_exports__["default"] = (shopListReducer);
+}, {
+  payload: []
+});
 
 /***/ }),
 
@@ -94727,15 +94809,17 @@ var shopListReducer = Object(redux_actions__WEBPACK_IMPORTED_MODULE_0__["handleA
 /*!***************************************!*\
   !*** ./resources/js/redux/reducer.js ***!
   \***************************************/
-/*! exports provided: default */
+/*! exports provided: reducer */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reducer", function() { return reducer; });
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var connected_react_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! connected-react-router */ "./node_modules/connected-react-router/esm/index.js");
 /* harmony import */ var redux_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux-form */ "./node_modules/redux-form/es/index.js");
-/* harmony import */ var _reducers_shop_shop_list_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../reducers/shop/shop.list.reducer */ "./resources/js/reducers/shop/shop.list.reducer.js");
+/* harmony import */ var _reducers_error_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../reducers/error.reducer */ "./resources/js/reducers/error.reducer.js");
+/* harmony import */ var _reducers_shop_shop_list_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../reducers/shop/shop.list.reducer */ "./resources/js/reducers/shop/shop.list.reducer.js");
 
 
 
@@ -94745,11 +94829,10 @@ var reducer = function reducer(history) {
   return Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
     router: Object(connected_react_router__WEBPACK_IMPORTED_MODULE_1__["connectRouter"])(history),
     form: redux_form__WEBPACK_IMPORTED_MODULE_2__["reducer"],
-    shops: _reducers_shop_shop_list_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
+    error: _reducers_error_reducer__WEBPACK_IMPORTED_MODULE_3__["errorReducer"],
+    shops: _reducers_shop_shop_list_reducer__WEBPACK_IMPORTED_MODULE_4__["shopListReducer"]
   });
 };
-
-/* harmony default export */ __webpack_exports__["default"] = (reducer);
 
 /***/ }),
 
@@ -94804,7 +94887,6 @@ function saga() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return initialize; });
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var redux_saga__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-saga */ "./node_modules/redux-saga/dist/redux-saga-core-npm-proxy.esm.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux-logger */ "./node_modules/redux-logger/dist/redux-logger.js");
@@ -94820,12 +94902,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function initialize() {
-  var sagaMiddleware = Object(redux_saga__WEBPACK_IMPORTED_MODULE_1__["default"])();
-  var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(Object(_reducer__WEBPACK_IMPORTED_MODULE_4__["default"])(_react_history__WEBPACK_IMPORTED_MODULE_6__["default"]), Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(sagaMiddleware, Object(redux_logger__WEBPACK_IMPORTED_MODULE_2__["createLogger"])(), Object(connected_react_router__WEBPACK_IMPORTED_MODULE_3__["routerMiddleware"])(_react_history__WEBPACK_IMPORTED_MODULE_6__["default"])));
-  sagaMiddleware.run(_saga__WEBPACK_IMPORTED_MODULE_5__["default"]);
-  return store;
-}
+var sagaMiddleware = Object(redux_saga__WEBPACK_IMPORTED_MODULE_1__["default"])();
+var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(Object(_reducer__WEBPACK_IMPORTED_MODULE_4__["reducer"])(_react_history__WEBPACK_IMPORTED_MODULE_6__["history"]), Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(sagaMiddleware, Object(redux_logger__WEBPACK_IMPORTED_MODULE_2__["createLogger"])(), Object(connected_react_router__WEBPACK_IMPORTED_MODULE_3__["routerMiddleware"])(_react_history__WEBPACK_IMPORTED_MODULE_6__["history"])));
+sagaMiddleware.run(_saga__WEBPACK_IMPORTED_MODULE_5__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = (store);
 
 /***/ }),
 
@@ -94842,9 +94922,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-saga/effects */ "./node_modules/redux-saga/dist/redux-saga-effects-npm-proxy.esm.js");
-/* harmony import */ var _utils_ajax_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/ajax.utils */ "./resources/js/utils/ajax.utils.js");
+/* harmony import */ var _utils_axios_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/axios.utils */ "./resources/js/utils/axios.utils.js");
 /* harmony import */ var _actions_shop_shop_create_action__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/shop/shop.create.action */ "./resources/js/actions/shop/shop.create.action.js");
-/* harmony import */ var _utils_log_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/log.utils */ "./resources/js/utils/log.utils.js");
 
 
 var _marked =
@@ -94858,22 +94937,29 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(shopCreat
 
 
 
-
 function postShopList(action) {
+  var error;
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function postShopList$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          Object(_utils_log_utils__WEBPACK_IMPORTED_MODULE_4__["log"])({
-            action: action
-          });
-          _context.next = 3;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_utils_ajax_utils__WEBPACK_IMPORTED_MODULE_2__["post"], '/api/shop/create', action.payload.value);
+          _context.next = 2;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_utils_axios_utils__WEBPACK_IMPORTED_MODULE_2__["post"], '/api/shop/create', action.payload.value);
 
-        case 3:
-          action.payload.callback();
+        case 2:
+          _context.next = 4;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["select"])(function (state) {
+            return state.error.payload;
+          });
 
         case 4:
+          error = _context.sent;
+
+          if (!error) {
+            action.payload.callback();
+          }
+
+        case 6:
         case "end":
           return _context.stop();
       }
@@ -94912,7 +94998,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-saga/effects */ "./node_modules/redux-saga/dist/redux-saga-effects-npm-proxy.esm.js");
-/* harmony import */ var _utils_ajax_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/ajax.utils */ "./resources/js/utils/ajax.utils.js");
+/* harmony import */ var _utils_axios_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/axios.utils */ "./resources/js/utils/axios.utils.js");
 /* harmony import */ var _actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/shop/shop.list.action */ "./resources/js/actions/shop/shop.list.action.js");
 
 
@@ -94928,25 +95014,38 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(shopListS
 
 
 function getShopList() {
-  var _ref, response;
+  var _ref, response, error;
 
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function getShopList$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_utils_ajax_utils__WEBPACK_IMPORTED_MODULE_2__["get"], '/api/shop/list');
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_utils_axios_utils__WEBPACK_IMPORTED_MODULE_2__["get"], '/api/shop/list');
 
         case 2:
           _ref = _context.sent;
           response = _ref.response;
           _context.next = 6;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["select"])(function (state) {
+            return state.error.payload;
+          });
+
+        case 6:
+          error = _context.sent;
+
+          if (error) {
+            _context.next = 10;
+            break;
+          }
+
+          _context.next = 10;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])({
             type: _actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_3__["GET_SHOP_LIST"],
             payload: response.data
           });
 
-        case 6:
+        case 10:
         case "end":
           return _context.stop();
       }
@@ -94972,10 +95071,48 @@ function shopListSaga() {
 
 /***/ }),
 
-/***/ "./resources/js/utils/ajax.utils.js":
-/*!******************************************!*\
-  !*** ./resources/js/utils/ajax.utils.js ***!
-  \******************************************/
+/***/ "./resources/js/service/axios.client.js":
+/*!**********************************************!*\
+  !*** ./resources/js/service/axios.client.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../redux/store */ "./resources/js/redux/store.js");
+/* harmony import */ var _actions_error_action__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/error.action */ "./resources/js/actions/error.action.js");
+
+
+
+var client = axios__WEBPACK_IMPORTED_MODULE_0___default.a.create();
+
+var onSuccess = function onSuccess(response) {
+  return response;
+};
+
+var onError = function onError(error) {
+  var _error$response = error.response,
+      status = _error$response.status,
+      data = _error$response.data;
+  _redux_store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch(Object(_actions_error_action__WEBPACK_IMPORTED_MODULE_2__["notifyError"])({
+    status: status,
+    data: data
+  }));
+};
+
+client.defaults.headers.common['X-CSRF-Token'] = document.getElementsByName('csrf-token')[0].content;
+client.interceptors.response.use(onSuccess, onError);
+/* harmony default export */ __webpack_exports__["default"] = (client);
+
+/***/ }),
+
+/***/ "./resources/js/utils/axios.utils.js":
+/*!*******************************************!*\
+  !*** ./resources/js/utils/axios.utils.js ***!
+  \*******************************************/
 /*! exports provided: get, post */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -94983,13 +95120,12 @@ function shopListSaga() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "get", function() { return get; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "post", function() { return post; });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _service_axios_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../service/axios.client */ "./resources/js/service/axios.client.js");
 /* harmony import */ var _log_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./log.utils */ "./resources/js/utils/log.utils.js");
 
 
 var get = function get(path) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(path).then(function (response) {
+  return _service_axios_client__WEBPACK_IMPORTED_MODULE_0__["default"].get(path).then(function (response) {
     Object(_log_utils__WEBPACK_IMPORTED_MODULE_1__["log"])({
       response: response
     });
@@ -95000,17 +95136,13 @@ var get = function get(path) {
     Object(_log_utils__WEBPACK_IMPORTED_MODULE_1__["log"])({
       error: error
     });
-    throw new Error(error);
+    return {
+      error: error
+    };
   });
 };
-
-var setCsrfToken = function setCsrfToken() {
-  axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common['X-CSRF-Token'] = document.getElementsByName('csrf-token')[0].content;
-};
-
 var post = function post(path, request) {
-  setCsrfToken();
-  axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(path, request).then(function (response) {
+  return _service_axios_client__WEBPACK_IMPORTED_MODULE_0__["default"].post(path, request).then(function (response) {
     Object(_log_utils__WEBPACK_IMPORTED_MODULE_1__["log"])({
       response: response
     });
@@ -95021,7 +95153,9 @@ var post = function post(path, request) {
     Object(_log_utils__WEBPACK_IMPORTED_MODULE_1__["log"])({
       error: error
     });
-    throw new Error(error);
+    return {
+      error: error
+    };
   });
 };
 

@@ -3,8 +3,11 @@ import { useSelector } from 'react-redux';
 import { log } from '../../../utils/log.utils';
 
 export const ShopListItems = () => {
-    const shops = useSelector(state => state.shops.payload);
-    log({shops: shops});
+    const shops = useSelector(state => {
+        log({ state: state });
+        return state.shops.payload;
+    });
+    log({ shops: shops });
     return shops.map(shop => {
         return (
             <tr key={shop.id}>
