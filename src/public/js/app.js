@@ -94938,28 +94938,16 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(shopCreat
 
 
 function postShopList(action) {
-  var error;
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function postShopList$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_utils_axios_utils__WEBPACK_IMPORTED_MODULE_2__["post"], '/api/shop/create', action.payload.value);
-
-        case 2:
-          _context.next = 4;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["select"])(function (state) {
-            return state.error.payload;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_utils_axios_utils__WEBPACK_IMPORTED_MODULE_2__["post"], '/api/shop/create', action.payload.value, function () {
+            action.payload.callback();
           });
 
-        case 4:
-          error = _context.sent;
-
-          if (!error) {
-            action.payload.callback();
-          }
-
-        case 6:
+        case 2:
         case "end":
           return _context.stop();
       }
@@ -94998,8 +94986,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-saga/effects */ "./node_modules/redux-saga/dist/redux-saga-effects-npm-proxy.esm.js");
-/* harmony import */ var _utils_axios_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/axios.utils */ "./resources/js/utils/axios.utils.js");
-/* harmony import */ var _actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/shop/shop.list.action */ "./resources/js/actions/shop/shop.list.action.js");
+/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../redux/store */ "./resources/js/redux/store.js");
+/* harmony import */ var _utils_axios_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/axios.utils */ "./resources/js/utils/axios.utils.js");
+/* harmony import */ var _actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/shop/shop.list.action */ "./resources/js/actions/shop/shop.list.action.js");
 
 
 var _marked =
@@ -95013,39 +95002,18 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(shopListS
 
 
 
-function getShopList() {
-  var _ref, response, error;
 
+function getShopList() {
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function getShopList$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_utils_axios_utils__WEBPACK_IMPORTED_MODULE_2__["get"], '/api/shop/list');
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_utils_axios_utils__WEBPACK_IMPORTED_MODULE_3__["get"], '/api/shop/list', function (response) {
+            _redux_store__WEBPACK_IMPORTED_MODULE_2__["default"].dispatch(_actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_4__["getShopList"](response.data));
+          });
 
         case 2:
-          _ref = _context.sent;
-          response = _ref.response;
-          _context.next = 6;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["select"])(function (state) {
-            return state.error.payload;
-          });
-
-        case 6:
-          error = _context.sent;
-
-          if (error) {
-            _context.next = 10;
-            break;
-          }
-
-          _context.next = 10;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])({
-            type: _actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_3__["GET_SHOP_LIST"],
-            payload: response.data
-          });
-
-        case 10:
         case "end":
           return _context.stop();
       }
@@ -95059,7 +95027,7 @@ function shopListSaga() {
       switch (_context2.prev = _context2.next) {
         case 0:
           _context2.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeEvery"])(_actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_3__["INIT_SHOP_LIST"], getShopList);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeEvery"])(_actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_4__["INIT_SHOP_LIST"], getShopList);
 
         case 2:
         case "end":
@@ -95103,7 +95071,7 @@ var onError = function onError(error) {
   }));
 };
 
-client.defaults.headers.common['X-CSRF-Token'] = document.getElementsByName('csrf-token')[0].content;
+client.defaults.headers.common['X-CSRF-Token'] = "document.getElementsByName('csrf-token')[0].content;";
 client.interceptors.response.use(onSuccess, onError);
 /* harmony default export */ __webpack_exports__["default"] = (client);
 
@@ -95124,11 +95092,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _log_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./log.utils */ "./resources/js/utils/log.utils.js");
 
 
-var get = function get(path) {
+var get = function get(path, callback) {
   return _service_axios_client__WEBPACK_IMPORTED_MODULE_0__["default"].get(path).then(function (response) {
     Object(_log_utils__WEBPACK_IMPORTED_MODULE_1__["log"])({
       response: response
     });
+
+    if (Object.keys(response).length) {
+      callback(response);
+    }
+
     return {
       response: response
     };
@@ -95141,11 +95114,16 @@ var get = function get(path) {
     };
   });
 };
-var post = function post(path, request) {
+var post = function post(path, request, callback) {
   return _service_axios_client__WEBPACK_IMPORTED_MODULE_0__["default"].post(path, request).then(function (response) {
     Object(_log_utils__WEBPACK_IMPORTED_MODULE_1__["log"])({
       response: response
     });
+
+    if (Object.keys(response).length) {
+      callback(response);
+    }
+
     return {
       response: response
     };
