@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field } from 'redux-form';
 import { useDispatch } from 'react-redux';
+import { ErrorMessages } from '../../error/error.message.component';
 import * as actions from '../../../actions/shop/shop.create.action';
 
 export const ShopCreate = (props) => {
@@ -18,10 +19,12 @@ export const ShopCreate = (props) => {
                     <div className="form-group">
                         <label htmlFor="name">名前</label>
                         <Field id={'name'} name="name" component="input" type="text" className="form-control" />
+                        <ErrorMessages name="name"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="rate">レート</label>
                         <Field id={'rate'} name="rate" component="input" type="text" className="form-control" />
+                        <ErrorMessages name="rate"/>
                     </div>
                     <div className="text-right">
                         <button type="submit" className="btn btn-primary">送信</button>
