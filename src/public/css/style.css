@@ -6,7 +6,7 @@ body {
   background-color: #f4f7f8;
 }
 
-.table td:nth-child(3) {
+.table td:nth-child(4) {
   white-space: nowrap;
   width: 1px;
 }
@@ -14,4 +14,50 @@ body {
 .form-control[disabled],
 .form-control[readonly] {
   background-color: #fff;
+}
+
+.full-height {
+  height: 80vh;
+}
+
+.flex-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.position-ref {
+  position: relative;
+}
+
+.code {
+  border-right: 2px solid;
+  font-size: 26px;
+  padding: 0 15px 0 15px;
+  text-align: center;
+}
+
+.message {
+  font-size: 18px;
+  text-align: center;
+}
+
+.validate-messages {
+  color: #761b18;
+  background-color: #f9d6d5;
+  border-color: #f7c6c5;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  margin-top: 6px;
+}
+
+.validate-messages ul{
+  list-style: none;
+  padding: 6px 12px;
+  display: table;
+  margin-bottom: 0;
+}
+
+.validate-messages ul li{
+  display: table-row;
 }
