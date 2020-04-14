@@ -94406,6 +94406,12 @@ var ErrorPage = function ErrorPage(_ref) {
     return children;
   }
 
+  var message = error.data.message;
+
+  if (!message) {
+    message = error.data;
+  }
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex-center position-ref full-height"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -94415,7 +94421,7 @@ var ErrorPage = function ErrorPage(_ref) {
     style: {
       padding: "10px"
     }
-  }, error.data.message));
+  }, message));
 };
 
 /***/ }),
@@ -94846,11 +94852,11 @@ if (shopRoot) {
     store: _redux_store__WEBPACK_IMPORTED_MODULE_5__["default"]
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(connected_react_router__WEBPACK_IMPORTED_MODULE_4__["ConnectedRouter"], {
     history: _react_history__WEBPACK_IMPORTED_MODULE_6__["history"]
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_3__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_route_client_component__WEBPACK_IMPORTED_MODULE_7__["RouteClient"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_3__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_3__["Route"], {
     exact: true,
     path: "/shop/list",
     component: _containers_shop_shop_list_container__WEBPACK_IMPORTED_MODULE_8__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_route_client_component__WEBPACK_IMPORTED_MODULE_7__["RouteClient"], {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_3__["Route"], {
     path: "/shop/create",
     component: _containers_shop_shop_create_container__WEBPACK_IMPORTED_MODULE_9__["default"]
   })))), shopRoot);
@@ -95045,7 +95051,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _marked =
 /*#__PURE__*/
-_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(postShopList),
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(postShopData),
     _marked2 =
 /*#__PURE__*/
 _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(shopCreateSaga);
@@ -95054,8 +95060,8 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(shopCreat
 
 
 
-function postShopList(action) {
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function postShopList$(_context) {
+function postShopData(action) {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function postShopData$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
@@ -95078,7 +95084,7 @@ function shopCreateSaga() {
       switch (_context2.prev = _context2.next) {
         case 0:
           _context2.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions_shop_shop_create_action__WEBPACK_IMPORTED_MODULE_3__["POST_SHOP_CREATE"], postShopList);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions_shop_shop_create_action__WEBPACK_IMPORTED_MODULE_3__["POST_SHOP_CREATE"], postShopData);
 
         case 2:
         case "end":

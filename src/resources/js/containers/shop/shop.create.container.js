@@ -23,6 +23,4 @@ class ShopCreateContainer extends Component {
 export default connect(
     null,
     actions
-)(reduxForm({
-    form: 'shopCreate'
-})(ShopCreateContainer));
+)(reduxForm({ form: 'shopCreate' })(ShopCreateContainer));

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Shop;
+use App\Post;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateShop;
 
@@ -10,6 +11,7 @@ class ShopController extends Controller
 {
     public function list()
     {
+        // \Log::info(Post::all());
         return Shop::all();
     }
 

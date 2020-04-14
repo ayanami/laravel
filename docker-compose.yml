@@ -1,16 +1,18 @@
-version: "3"
+version: "3.6"
 services:
     app:
         build:
             context: ./docker/php
             args:
                 - TZ=${TZ}
+        container_name: laravel_app
         volumes:
             - ./src:/work
-            - ./logs:/var/log/php
+            - ./logs:/work/storage/logs
             - ./docker/php/php.ini:/usr/local/etc/php/php.ini
         working_dir: /work
         environment:
+            - APP_LOG_DIR=${APP_LOG_DIR}
             - DB_CONNECTION=mysql
             - DB_HOST=db
             - DB_DATABASE=${DB_NAME}
@@ -23,6 +25,7 @@ services:
             - HTTPS_PROXY=${PROXY}
     web:
         image: nginx:1.17-alpine
+        container_name: laravel_web
         depends_on:
             - app
         ports:
@@ -35,10 +38,12 @@ services:
             - TZ=${TZ}
     mail:
         image: mailhog/mailhog
+        container_name: laravel_mail
         ports:
             - ${MAILHOG_PORT}:8025
     db:
         image: mysql:8.0
+        container_name: laravel_db
         ports:
             - ${DB_PORT}:3306
         volumes:
@@ -51,5 +56,9 @@ services:
             - MYSQL_PASSWORD=${DB_PASS}
             - MYSQL_ROOT_PASSWORD=${DB_PASS}
             - TZ=${TZ}
+networks: 
+    default:
+        external: 
+            name: wp_network
 volumes:
     db-store:

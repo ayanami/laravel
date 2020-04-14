@@ -6,10 +6,14 @@ export const ErrorPage = ({ children }) => {
     if (!error || error.status == 422) {
         return children;
     }
+    let message = error.data.message;
+    if (!message) {
+        message = error.data;
+    }
     return (
         <div className="flex-center position-ref full-height">
             <div className="code">{error.status}</div>
-            <div className="message" style={{ padding: "10px" }}>{error.data.message}</div>
+            <div className="message" style={{ padding: "10px" }}>{message}</div>
         </div>
     );
 }
