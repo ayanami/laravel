@@ -42,7 +42,7 @@ body {
   text-align: center;
 }
 
-.validate-message {
+.validate-messages {
   color: #761b18;
   background-color: #f9d6d5;
   border-color: #f7c6c5;
@@ -51,13 +51,13 @@ body {
   margin-top: 6px;
 }
 
-.validate-message ul{
+.validate-messages ul{
   list-style: none;
   padding: 6px 12px;
   display: table;
   margin-bottom: 0;
 }
 
-.validate-message ul li{
+.validate-messages ul li{
   display: table-row;
 }

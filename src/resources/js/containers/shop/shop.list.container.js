@@ -6,9 +6,6 @@ import { ShopList } from '../../components/shop/list/shop.list.component';
 import { log } from '../../utils/log.utils';
 
 class ShopListContainer extends Component {
-    constructor() {
-        super();
-    }
     componentDidMount() {
         this.props.initShopList();
     }

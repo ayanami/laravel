@@ -7,9 +7,6 @@ import * as actions from '../../actions/shop/shop.create.action';
 import { log } from '../../utils/log.utils';
 
 class ShopCreateContainer extends Component {
-    constructor() {
-        super();
-    }
     componentDidMount() {
         this.props.initShopCreate();
     }
@@ -26,4 +23,6 @@ class ShopCreateContainer extends Component {
 export default connect(
     null,
     actions
-)(reduxForm({ form: 'shopCreate' })(ShopCreateContainer));
+)(reduxForm({
+    form: 'shopCreate'
+})(ShopCreateContainer));
