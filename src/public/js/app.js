@@ -94363,20 +94363,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _validators_attributes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../validators/attributes */ "./resources/js/validators/attributes.js");
 
 
-var ClientValidateMessages = function ClientValidateMessages(props) {
+
+var ClientValidateMessages = function ClientValidateMessages(_ref) {
+  var formName = _ref.formName,
+      fieldName = _ref.fieldName;
   var form = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
-    return state.form[props.data];
+    return state.form[formName];
   });
 
-  if (!form || !form.submitFailed || !form.syncErrors[props.name]) {
+  if (!form || !form.submitFailed || !form.syncErrors || !form.syncErrors[fieldName]) {
     return null;
   }
 
+  var message = form.syncErrors[fieldName];
+  var attribute = _validators_attributes__WEBPACK_IMPORTED_MODULE_2__["attributes"][fieldName];
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "validate-messages"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, form.syncErrors[props.name])));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, message.replace(':attribute', attribute))));
 };
 
 /***/ }),
@@ -94441,29 +94447,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 
 
-var ServerValidateMessages = function ServerValidateMessages(props) {
+var ServerValidateMessages = function ServerValidateMessages(_ref) {
+  var fieldName = _ref.fieldName;
   var error = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
     return state.error.payload;
   });
 
-  if (!error || error.status != 422 || !error.data.errors[props.name]) {
+  if (!error || error.status != 422 || !error.data.errors || !error.data.errors[fieldName]) {
     return null;
   }
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "validate-messages"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Messages, props)));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Messages, {
+    values: error.data.errors[fieldName]
+  })));
 };
 
-var Messages = function Messages(props) {
-  var error = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
-    return state.error.payload;
-  });
-  var messages = error.data.errors[props.name];
-  return messages.map(function (message) {
+var Messages = function Messages(_ref2) {
+  var values = _ref2.values;
+  return values.map(function (value) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      key: message
-    }, message);
+      key: value
+    }, value);
   });
 };
 
@@ -94550,10 +94556,10 @@ var ShopCreate = function ShopCreate(props) {
     className: "form-control",
     validate: [_validators_required_validator__WEBPACK_IMPORTED_MODULE_4__["required"]]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_error_client_validate_messages_component__WEBPACK_IMPORTED_MODULE_5__["ClientValidateMessages"], {
-    data: "shopCreate",
-    name: "name"
+    formName: "shopCreate",
+    fieldName: "name"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_error_server_validate_messages_component__WEBPACK_IMPORTED_MODULE_6__["ServerValidateMessages"], {
-    name: "name"
+    fieldName: "name"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -94563,9 +94569,13 @@ var ShopCreate = function ShopCreate(props) {
     name: "rate",
     component: "input",
     type: "text",
-    className: "form-control"
+    className: "form-control",
+    validate: [_validators_required_validator__WEBPACK_IMPORTED_MODULE_4__["required"]]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_error_client_validate_messages_component__WEBPACK_IMPORTED_MODULE_5__["ClientValidateMessages"], {
+    formName: "shopCreate",
+    fieldName: "rate"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_error_server_validate_messages_component__WEBPACK_IMPORTED_MODULE_6__["ServerValidateMessages"], {
-    name: "rate"
+    fieldName: "rate"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-right"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -94852,11 +94862,11 @@ if (shopRoot) {
     store: _redux_store__WEBPACK_IMPORTED_MODULE_5__["default"]
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(connected_react_router__WEBPACK_IMPORTED_MODULE_4__["ConnectedRouter"], {
     history: _react_history__WEBPACK_IMPORTED_MODULE_6__["history"]
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_3__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_3__["Route"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_3__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_route_client_component__WEBPACK_IMPORTED_MODULE_7__["RouteClient"], {
     exact: true,
     path: "/shop/list",
     component: _containers_shop_shop_list_container__WEBPACK_IMPORTED_MODULE_8__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_3__["Route"], {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_route_client_component__WEBPACK_IMPORTED_MODULE_7__["RouteClient"], {
     path: "/shop/create",
     component: _containers_shop_shop_create_container__WEBPACK_IMPORTED_MODULE_9__["default"]
   })))), shopRoot);
@@ -95280,6 +95290,23 @@ var log = function log(message) {
 
 /***/ }),
 
+/***/ "./resources/js/validators/attributes.js":
+/*!***********************************************!*\
+  !*** ./resources/js/validators/attributes.js ***!
+  \***********************************************/
+/*! exports provided: attributes */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "attributes", function() { return attributes; });
+var attributes = {
+  name: '名前',
+  rate: 'レート'
+};
+
+/***/ }),
+
 /***/ "./resources/js/validators/required.validator.js":
 /*!*******************************************************!*\
   !*** ./resources/js/validators/required.validator.js ***!
@@ -95290,7 +95317,7 @@ var log = function log(message) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "required", function() { return required; });
-var message = '必須項目です。';
+var message = ':attribute は入力必須です。';
 var required = function required(value) {
   return value || typeof value === 'number' ? undefined : message;
 };

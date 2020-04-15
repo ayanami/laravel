@@ -22,14 +22,15 @@ export const ShopCreate = (props) => {
                         <label htmlFor="name">名前</label>
                         <Field id={'name'} name="name" component="input" type="text" className="form-control"
                             validate={[required]} />
-                        <ClientValidateMessages data="shopCreate" name="name" />
-                        <ServerValidateMessages name="name" />
+                        <ClientValidateMessages formName="shopCreate" fieldName="name" />
+                        <ServerValidateMessages fieldName="name" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="rate">レート</label>
                         <Field id={'rate'} name="rate" component="input" type="text" className="form-control"
-                        />
-                        <ServerValidateMessages name="rate" />
+                            validate={[required]} />
+                        <ClientValidateMessages formName="shopCreate" fieldName="rate" />
+                        <ServerValidateMessages fieldName="rate" />
                     </div>
                     <div className="text-right">
                         <button type="submit" className="btn btn-primary">送信</button>
