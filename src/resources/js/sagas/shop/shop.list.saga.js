@@ -1,12 +1,11 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
-import { get } from '../../utils/connection.utils';
+import { call, takeEvery } from 'redux-saga/effects';
+import store from '../../redux/store';
+import { get } from '../../utils/axios.utils';
 import * as actions from '../../actions/shop/shop.list.action';
 
 function* getShopList() {
-    const { response } = yield call(get, '/api/shop/list');
-    yield put({
-        type: actions.GET_SHOP_LIST,
-        payload: response.data
+    yield call(get, '/api/shop/list', response => {
+        store.dispatch(actions.getShopList(response.data));
     });
 }
 
