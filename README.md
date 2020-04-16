@@ -1,5 +1,9 @@
 # laravel
-## install webpack
+## initialize
+$ composer install
+$ cp .env.example .env
+$ php artisan key:generate
+$ php artisan migrate
 $ npm install webpack
 
 ## mail
