@@ -94855,9 +94855,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var shopRoot = document.getElementById('shopRoot');
+var root = document.getElementById('root');
 
-if (shopRoot) {
+if (root) {
   Object(react_dom__WEBPACK_IMPORTED_MODULE_1__["render"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_2__["Provider"], {
     store: _redux_store__WEBPACK_IMPORTED_MODULE_5__["default"]
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(connected_react_router__WEBPACK_IMPORTED_MODULE_4__["ConnectedRouter"], {
@@ -94869,7 +94869,7 @@ if (shopRoot) {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_wrapped_route_component__WEBPACK_IMPORTED_MODULE_7__["WrappedRoute"], {
     path: "/shop/create",
     component: _containers_shop_shop_create_container__WEBPACK_IMPORTED_MODULE_9__["default"]
-  })))), shopRoot);
+  })))), root);
 }
 
 /***/ }),

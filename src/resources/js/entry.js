@@ -9,8 +9,8 @@ import { WrappedRoute } from './components/wrapped.route.component';
 import ShopListContainer from './containers/shop/shop.list.container';
 import ShopCreateContainer from './containers/shop/shop.create.container';
 
-const shopRoot = document.getElementById('shopRoot');
-if (shopRoot) {
+const root = document.getElementById('root');
+if (root) {
     render(
         <Provider store={store}>
             <ConnectedRouter history={history}>
@@ -20,6 +20,6 @@ if (shopRoot) {
                 </Switch>
             </ConnectedRouter>
         </Provider>,
-        shopRoot
+        root
     );
 }
