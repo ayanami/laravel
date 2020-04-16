@@ -1,7 +1,7 @@
-import client from '../service/axios.client';
+import wrapper from '../service/axios.wrapper';
 import { log } from './log.utils';
 
-export const get = (path, callback) => client
+export const get = (path, callback) => wrapper
     .get(path)
     .then(response => {
         log({ response: response });
@@ -15,7 +15,7 @@ export const get = (path, callback) => client
         return { error }
     });
 
-export const post = (path, request, callback) => client.post(path, request)
+export const post = (path, request, callback) => wrapper.post(path, request)
     .then(response => {
         log({ response: response });
         if (Object.keys(response).length) {

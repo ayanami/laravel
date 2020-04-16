@@ -94475,33 +94475,6 @@ var Messages = function Messages(_ref2) {
 
 /***/ }),
 
-/***/ "./resources/js/components/route.client.component.js":
-/*!***********************************************************!*\
-  !*** ./resources/js/components/route.client.component.js ***!
-  \***********************************************************/
-/*! exports provided: RouteClient */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RouteClient", function() { return RouteClient; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_error_action__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/error.action */ "./resources/js/actions/error.action.js");
-
-
-
-
-var RouteClient = function RouteClient(props) {
-  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
-  dispatch(Object(_actions_error_action__WEBPACK_IMPORTED_MODULE_3__["notifyError"])(null));
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], props);
-};
-
-/***/ }),
-
 /***/ "./resources/js/components/shop/create/shop.create.component.js":
 /*!**********************************************************************!*\
   !*** ./resources/js/components/shop/create/shop.create.component.js ***!
@@ -94664,6 +94637,33 @@ var ShopListItems = function ShopListItems() {
       }
     }))));
   });
+};
+
+/***/ }),
+
+/***/ "./resources/js/components/wrapped.route.component.js":
+/*!************************************************************!*\
+  !*** ./resources/js/components/wrapped.route.component.js ***!
+  \************************************************************/
+/*! exports provided: WrappedRoute */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WrappedRoute", function() { return WrappedRoute; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_error_action__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/error.action */ "./resources/js/actions/error.action.js");
+
+
+
+
+var WrappedRoute = function WrappedRoute(props) {
+  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
+  dispatch(Object(_actions_error_action__WEBPACK_IMPORTED_MODULE_3__["notifyError"])(null));
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], props);
 };
 
 /***/ }),
@@ -94842,7 +94842,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var connected_react_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! connected-react-router */ "./node_modules/connected-react-router/esm/index.js");
 /* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./redux/store */ "./resources/js/redux/store.js");
 /* harmony import */ var _react_history__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./react/history */ "./resources/js/react/history.js");
-/* harmony import */ var _components_route_client_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/route.client.component */ "./resources/js/components/route.client.component.js");
+/* harmony import */ var _components_wrapped_route_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/wrapped.route.component */ "./resources/js/components/wrapped.route.component.js");
 /* harmony import */ var _containers_shop_shop_list_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./containers/shop/shop.list.container */ "./resources/js/containers/shop/shop.list.container.js");
 /* harmony import */ var _containers_shop_shop_create_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./containers/shop/shop.create.container */ "./resources/js/containers/shop/shop.create.container.js");
 
@@ -94862,11 +94862,11 @@ if (shopRoot) {
     store: _redux_store__WEBPACK_IMPORTED_MODULE_5__["default"]
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(connected_react_router__WEBPACK_IMPORTED_MODULE_4__["ConnectedRouter"], {
     history: _react_history__WEBPACK_IMPORTED_MODULE_6__["history"]
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_3__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_route_client_component__WEBPACK_IMPORTED_MODULE_7__["RouteClient"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_3__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_wrapped_route_component__WEBPACK_IMPORTED_MODULE_7__["WrappedRoute"], {
     exact: true,
     path: "/shop/list",
     component: _containers_shop_shop_list_container__WEBPACK_IMPORTED_MODULE_8__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_route_client_component__WEBPACK_IMPORTED_MODULE_7__["RouteClient"], {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_wrapped_route_component__WEBPACK_IMPORTED_MODULE_7__["WrappedRoute"], {
     path: "/shop/create",
     component: _containers_shop_shop_create_container__WEBPACK_IMPORTED_MODULE_9__["default"]
   })))), shopRoot);
@@ -95172,10 +95172,10 @@ function shopListSaga() {
 
 /***/ }),
 
-/***/ "./resources/js/service/axios.client.js":
-/*!**********************************************!*\
-  !*** ./resources/js/service/axios.client.js ***!
-  \**********************************************/
+/***/ "./resources/js/service/axios.wrapper.js":
+/*!***********************************************!*\
+  !*** ./resources/js/service/axios.wrapper.js ***!
+  \***********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -95188,7 +95188,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var client = axios__WEBPACK_IMPORTED_MODULE_0___default.a.create();
+var wrapper = axios__WEBPACK_IMPORTED_MODULE_0___default.a.create();
 
 var onSuccess = function onSuccess(response) {
   return response;
@@ -95204,9 +95204,9 @@ var onError = function onError(error) {
   }));
 };
 
-client.defaults.headers.common['X-CSRF-Token'] = document.getElementsByName('csrf-token')[0].content;
-client.interceptors.response.use(onSuccess, onError);
-/* harmony default export */ __webpack_exports__["default"] = (client);
+wrapper.defaults.headers.common['X-CSRF-Token'] = document.getElementsByName('csrf-token')[0].content;
+wrapper.interceptors.response.use(onSuccess, onError);
+/* harmony default export */ __webpack_exports__["default"] = (wrapper);
 
 /***/ }),
 
@@ -95221,12 +95221,12 @@ client.interceptors.response.use(onSuccess, onError);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "get", function() { return get; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "post", function() { return post; });
-/* harmony import */ var _service_axios_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../service/axios.client */ "./resources/js/service/axios.client.js");
+/* harmony import */ var _service_axios_wrapper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../service/axios.wrapper */ "./resources/js/service/axios.wrapper.js");
 /* harmony import */ var _log_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./log.utils */ "./resources/js/utils/log.utils.js");
 
 
 var get = function get(path, callback) {
-  return _service_axios_client__WEBPACK_IMPORTED_MODULE_0__["default"].get(path).then(function (response) {
+  return _service_axios_wrapper__WEBPACK_IMPORTED_MODULE_0__["default"].get(path).then(function (response) {
     Object(_log_utils__WEBPACK_IMPORTED_MODULE_1__["log"])({
       response: response
     });
@@ -95248,7 +95248,7 @@ var get = function get(path, callback) {
   });
 };
 var post = function post(path, request, callback) {
-  return _service_axios_client__WEBPACK_IMPORTED_MODULE_0__["default"].post(path, request).then(function (response) {
+  return _service_axios_wrapper__WEBPACK_IMPORTED_MODULE_0__["default"].post(path, request).then(function (response) {
     Object(_log_utils__WEBPACK_IMPORTED_MODULE_1__["log"])({
       response: response
     });

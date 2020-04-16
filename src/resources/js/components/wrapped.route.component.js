@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { notifyError } from "../actions/error.action";
 
-export const RouteClient = (props) => {
+export const WrappedRoute = (props) => {
     const dispatch = useDispatch();
     dispatch(notifyError(null));
     return <Route {...props} />;
