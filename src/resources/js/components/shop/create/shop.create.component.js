@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import * as actions from '../../../actions/shop/shop.create.action';
 import { WrappedField } from '../../redux/wrapped.field.component';
@@ -8,11 +8,11 @@ import { ServerValidateMessages } from '../../error/server.validate.messages.com
 
 export const ShopCreate = (props) => {
     const dispatch = useDispatch();
-    const submit = value => {
+    const submit = useCallback(value => {
         dispatch(actions.postShopCreate(value, () =>
             props.history.push('/shop/list')
         ));
-    }
+    }, []);
     return (
         <div className="panel panel-default">
             <div className="panel-heading">店舗を追加する</div>
@@ -20,15 +20,34 @@ export const ShopCreate = (props) => {
                 <form onSubmit={props.handleSubmit(submit)}>
                     <div className="form-group">
                         <label htmlFor="name">名前</label>
-                        <WrappedField id={'name'} name="name" component="input" type="text" className="form-control"
-                            validate={[validators.required, validators.max(50)]} />
+                        <WrappedField
+                            form="shopCreate"
+                            id={'name'}
+                            name="name"
+                            component="input"
+                            type="text"
+                            className="form-control"
+                            validate={[
+                                validators.required,
+                                validators.max(50)
+                            ]}
+                        />
                         <ClientValidateMessages name="name" />
                         <ServerValidateMessages name="name" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="rate">レート</label>
-                        <WrappedField id={'rate'} name="rate" component="input" type="text" className="form-control"
-                            validate={[validators.required]} />
+                        <WrappedField
+                            form="shopCreate"
+                            id={'rate'}
+                            name="rate"
+                            component="input"
+                            type="text"
+                            className="form-control"
+                            validate={[
+                                validators.required
+                            ]}
+                        />
                         <ClientValidateMessages name="rate" />
                         <ServerValidateMessages name="rate" />
                     </div>

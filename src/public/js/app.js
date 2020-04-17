@@ -94402,24 +94402,16 @@ var ClientValidateMessages = function ClientValidateMessages(_ref) {
   }
 
   var attribute = _validation_attributes__WEBPACK_IMPORTED_MODULE_2__["attributes"][name];
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "validate-messages"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Messages, {
-    attribute: attribute,
-    values: clientError[name]
-  })));
-};
-
-var Messages = function Messages(_ref2) {
-  var attribute = _ref2.attribute,
-      values = _ref2.values;
-  return values.filter(function (value) {
+  var messages = clientError[name].filter(function (value) {
     return !!value;
   }).map(function (value) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       key: value
     }, value.replace(':attribute', attribute));
   });
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "validate-messages"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, messages));
 };
 
 /***/ }),
@@ -94491,20 +94483,14 @@ var ServerValidateMessages = function ServerValidateMessages(_ref) {
     return null;
   }
 
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "validate-messages"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Messages, {
-    values: serverError.data.errors[name]
-  })));
-};
-
-var Messages = function Messages(_ref2) {
-  var values = _ref2.values;
-  return values.map(function (value) {
+  var messages = serverError.data.errors[name].map(function (value) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       key: value
     }, value);
   });
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "validate-messages"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, messages));
 };
 
 /***/ }),
@@ -94562,14 +94548,16 @@ var WrappedField = function WrappedField(props) {
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
   dispatch(Object(_actions_error_server_error_action__WEBPACK_IMPORTED_MODULE_4__["clearServerError"])());
   var form = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(function (state) {
-    return state.form[props.formName];
+    return state.form[props.form];
   });
+  console.log(form);
   var clientError = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(function (state) {
     return state.clientError.payload;
   });
   clientError[props.name] = props.validate.map(function (fn) {
     return fn((form === null || form === void 0 ? void 0 : form.values) && props.name in form.values ? form.values[props.name] : undefined);
   });
+  console.log(clientError);
   dispatch(Object(_actions_error_client_error_action__WEBPACK_IMPORTED_MODULE_3__["notifyClientError"])(clientError));
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_1__["Field"], props);
 };
@@ -94603,13 +94591,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var ShopCreate = function ShopCreate(props) {
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
-
-  var submit = function submit(value) {
+  var submit = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function (value) {
     dispatch(_actions_shop_shop_create_action__WEBPACK_IMPORTED_MODULE_2__["postShopCreate"](value, function () {
       return props.history.push('/shop/list');
     }));
-  };
-
+  }, []);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "panel panel-default"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -94623,6 +94609,7 @@ var ShopCreate = function ShopCreate(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "name"
   }, "\u540D\u524D"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_redux_wrapped_field_component__WEBPACK_IMPORTED_MODULE_3__["WrappedField"], {
+    form: "shopCreate",
     id: 'name',
     name: "name",
     component: "input",
@@ -94638,6 +94625,7 @@ var ShopCreate = function ShopCreate(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "rate"
   }, "\u30EC\u30FC\u30C8"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_redux_wrapped_field_component__WEBPACK_IMPORTED_MODULE_3__["WrappedField"], {
+    form: "shopCreate",
     id: 'rate',
     name: "rate",
     component: "input",

@@ -6,19 +6,12 @@ export const ServerValidateMessages = ({ name }) => {
     if (serverError?.status != 422 || !(name in serverError?.data?.errors)) {
         return null;
     }
+    const messages = serverError.data.errors[name].map(value =>
+        <li key={value}>{value}</li>
+    );
     return (
         <div className="validate-messages">
-            <ul>
-                <Messages values={serverError.data.errors[name]} />
-            </ul>
+            <ul>{messages}</ul>
         </div>
     );
-}
-
-const Messages = ({ values }) => {
-    return values.map(value => {
-        return (
-            <li key={value}>{value}</li>
-        );
-    });
 }

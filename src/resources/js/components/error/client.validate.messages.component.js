@@ -8,19 +8,12 @@ export const ClientValidateMessages = ({ name }) => {
         return null;
     }
     const attribute = attributes[name];
+    const messages = clientError[name].filter(value => !!value).map(value => 
+        <li key={value}>{value.replace(':attribute', attribute)}</li>
+    );
     return (
         <div className="validate-messages">
-            <ul>
-                <Messages attribute={attribute} values={clientError[name]} />
-            </ul>
+            <ul>{messages}</ul>
         </div>
     );
-}
-
-const Messages = ({ attribute, values }) => {
-    return values.filter(value => !!value).map(value => {
-        return (
-            <li key={value}>{value.replace(':attribute', attribute)}</li>
-        );
-    });
 }
