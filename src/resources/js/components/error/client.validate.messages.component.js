@@ -1,19 +1,14 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { attributes } from '../../validation/attributes';
 
-export const ClientValidateMessages = ({ name }) => {
-    const clientError = useSelector(state => state.clientError.payload);
-    if (!(name in clientError) || !clientError[name].filter(value => !!value).length) {
+export const ClientValidateMessages = ({ name, errors }) => {
+    if (!(name in errors)) {
         return null;
     }
-    const attribute = attributes[name];
-    const messages = clientError[name].filter(value => !!value).map(value => 
-        <li key={value}>{value.replace(':attribute', attribute)}</li>
-    );
+    const message = errors[name].message.replace(':attribute', attributes[name]);
     return (
         <div className="validate-messages">
-            <ul>{messages}</ul>
+            <ul><li>{message}</li></ul>
         </div>
     );
 }

@@ -83097,34 +83097,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ClientValidateMessages", function() { return ClientValidateMessages; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _validation_attributes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../validation/attributes */ "./resources/js/validation/attributes.js");
-
+/* harmony import */ var _validation_attributes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../validation/attributes */ "./resources/js/validation/attributes.js");
 
 
 var ClientValidateMessages = function ClientValidateMessages(_ref) {
-  var name = _ref.name;
-  var clientError = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
-    return state.clientError.payload;
-  });
+  var name = _ref.name,
+      errors = _ref.errors;
 
-  if (!(name in clientError) || !clientError[name].filter(function (value) {
-    return !!value;
-  }).length) {
+  if (!(name in errors)) {
     return null;
   }
 
-  var attribute = _validation_attributes__WEBPACK_IMPORTED_MODULE_2__["attributes"][name];
-  var messages = clientError[name].filter(function (value) {
-    return !!value;
-  }).map(function (value) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      key: value
-    }, value.replace(':attribute', attribute));
-  });
+  var message = errors[name].message.replace(':attribute', _validation_attributes__WEBPACK_IMPORTED_MODULE_1__["attributes"][name]);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "validate-messages"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, messages));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, message)));
 };
 
 /***/ }),
@@ -83263,7 +83250,8 @@ __webpack_require__.r(__webpack_exports__);
 var ShopCreate = function ShopCreate(props) {
   var _useForm = Object(react_hook_form__WEBPACK_IMPORTED_MODULE_1__["useForm"])(),
       register = _useForm.register,
-      handleSubmit = _useForm.handleSubmit;
+      handleSubmit = _useForm.handleSubmit,
+      errors = _useForm.errors;
 
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
   var submit = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function (value) {
@@ -83288,7 +83276,17 @@ var ShopCreate = function ShopCreate(props) {
     name: "name",
     type: "text",
     className: "form-control",
-    ref: register
+    ref: register({
+      validate: {
+        required: _validation_validator__WEBPACK_IMPORTED_MODULE_4__["required"],
+        maxLength: _validation_validator__WEBPACK_IMPORTED_MODULE_4__["maxLength"](50)
+      }
+    })
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_error_client_validate_messages_component__WEBPACK_IMPORTED_MODULE_5__["ClientValidateMessages"], {
+    name: "name",
+    errors: errors
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_error_server_validate_messages_component__WEBPACK_IMPORTED_MODULE_6__["ServerValidateMessages"], {
+    name: "name"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -83298,7 +83296,17 @@ var ShopCreate = function ShopCreate(props) {
     name: "rate",
     type: "text",
     className: "form-control",
-    ref: register
+    ref: register({
+      validate: {
+        required: _validation_validator__WEBPACK_IMPORTED_MODULE_4__["required"],
+        regex: _validation_validator__WEBPACK_IMPORTED_MODULE_4__["regex"](/^([1-9][0-9]{0,1}|0)(\.[0-9]{1})?$/)
+      }
+    })
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_error_client_validate_messages_component__WEBPACK_IMPORTED_MODULE_5__["ClientValidateMessages"], {
+    name: "rate",
+    errors: errors
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_error_server_validate_messages_component__WEBPACK_IMPORTED_MODULE_6__["ServerValidateMessages"], {
+    name: "rate"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-right"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -83609,30 +83617,6 @@ var history = Object(history__WEBPACK_IMPORTED_MODULE_0__["createBrowserHistory"
 
 /***/ }),
 
-/***/ "./resources/js/reducers/error/client.error.reducer.js":
-/*!*************************************************************!*\
-  !*** ./resources/js/reducers/error/client.error.reducer.js ***!
-  \*************************************************************/
-/*! exports provided: clientErrorReducer */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clientErrorReducer", function() { return clientErrorReducer; });
-/* harmony import */ var redux_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-actions */ "./node_modules/redux-actions/es/index.js");
-
-var clientErrorReducer = Object(redux_actions__WEBPACK_IMPORTED_MODULE_0__["handleActions"])({
-  NOTIFY_CLIENT_ERROR: function NOTIFY_CLIENT_ERROR(state, action) {
-    return {
-      payload: action.payload
-    };
-  }
-}, {
-  payload: {}
-});
-
-/***/ }),
-
 /***/ "./resources/js/reducers/error/server.error.reducer.js":
 /*!*************************************************************!*\
   !*** ./resources/js/reducers/error/server.error.reducer.js ***!
@@ -83698,10 +83682,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reducer", function() { return reducer; });
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var connected_react_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! connected-react-router */ "./node_modules/connected-react-router/esm/index.js");
-/* harmony import */ var _reducers_error_client_error_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../reducers/error/client.error.reducer */ "./resources/js/reducers/error/client.error.reducer.js");
-/* harmony import */ var _reducers_error_server_error_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../reducers/error/server.error.reducer */ "./resources/js/reducers/error/server.error.reducer.js");
-/* harmony import */ var _reducers_shop_shop_list_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../reducers/shop/shop.list.reducer */ "./resources/js/reducers/shop/shop.list.reducer.js");
-
+/* harmony import */ var _reducers_error_server_error_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../reducers/error/server.error.reducer */ "./resources/js/reducers/error/server.error.reducer.js");
+/* harmony import */ var _reducers_shop_shop_list_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../reducers/shop/shop.list.reducer */ "./resources/js/reducers/shop/shop.list.reducer.js");
 
 
 
@@ -83709,9 +83691,8 @@ __webpack_require__.r(__webpack_exports__);
 var reducer = function reducer(history) {
   return Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
     router: Object(connected_react_router__WEBPACK_IMPORTED_MODULE_1__["connectRouter"])(history),
-    clientError: _reducers_error_client_error_reducer__WEBPACK_IMPORTED_MODULE_2__["clientErrorReducer"],
-    serverError: _reducers_error_server_error_reducer__WEBPACK_IMPORTED_MODULE_3__["serverErrorReducer"],
-    shops: _reducers_shop_shop_list_reducer__WEBPACK_IMPORTED_MODULE_4__["shopListReducer"]
+    serverError: _reducers_error_server_error_reducer__WEBPACK_IMPORTED_MODULE_2__["serverErrorReducer"],
+    shops: _reducers_shop_shop_list_reducer__WEBPACK_IMPORTED_MODULE_3__["shopListReducer"]
   });
 };
 
@@ -84067,7 +84048,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "messages", function() { return messages; });
 var messages = {
   required: ':attribute は入力必須です。',
-  max: ':attribute は :max 文字以内で入力してください。'
+  maxLength: ':attribute は :maxLength 文字以内で入力してください。',
+  reqex: ':attribute の入力形式に誤りがあります。'
 };
 
 /***/ }),
@@ -84076,23 +84058,27 @@ var messages = {
 /*!**********************************************!*\
   !*** ./resources/js/validation/validator.js ***!
   \**********************************************/
-/*! exports provided: required, max */
+/*! exports provided: required, maxLength, regex */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "required", function() { return required; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "max", function() { return max; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "maxLength", function() { return maxLength; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "regex", function() { return regex; });
 /* harmony import */ var _messages__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./messages */ "./resources/js/validation/messages.js");
-/* harmony import */ var _utils_log_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/log.utils */ "./resources/js/utils/log.utils.js");
-
 
 var required = function required(value) {
   return value || typeof value === 'number' ? undefined : _messages__WEBPACK_IMPORTED_MODULE_0__["messages"].required;
 };
-var max = function max(_max) {
+var maxLength = function maxLength(_maxLength) {
   return function (value) {
-    return value && value.length > _max ? _messages__WEBPACK_IMPORTED_MODULE_0__["messages"].max.replace(':max', _max) : undefined;
+    return value && value.length > _maxLength ? _messages__WEBPACK_IMPORTED_MODULE_0__["messages"].maxLength.replace(':maxLength', _maxLength) : undefined;
+  };
+};
+var regex = function regex(_regex) {
+  return function (value) {
+    return value && !_regex.test(value) ? _messages__WEBPACK_IMPORTED_MODULE_0__["messages"].reqex : undefined;
   };
 };
 
