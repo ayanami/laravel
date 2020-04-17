@@ -1,21 +1,21 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-export const ServerValidateMessages = ({fieldName}) => {
-    const error = useSelector(state => state.error.payload);
-    if (!error || error.status != 422 || !error.data.errors || !error.data.errors[fieldName]) {
+export const ServerValidateMessages = ({ name }) => {
+    const serverError = useSelector(state => state.serverError.payload);
+    if (serverError?.status != 422 || !(name in serverError?.data?.errors)) {
         return null;
     }
     return (
         <div className="validate-messages">
             <ul>
-                <Messages values={error.data.errors[fieldName]} />
+                <Messages values={serverError.data.errors[name]} />
             </ul>
         </div>
     );
 }
 
-const Messages = ({values}) => {
+const Messages = ({ values }) => {
     return values.map(value => {
         return (
             <li key={value}>{value}</li>

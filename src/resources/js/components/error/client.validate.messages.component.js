@@ -1,19 +1,26 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { attributes } from '../../validators/attributes';
+import { attributes } from '../../validation/attributes';
 
-export const ClientValidateMessages = ({ formName, fieldName }) => {
-    const form = useSelector(state => state.form[formName]);
-    if (!form || !form.submitFailed || !form.syncErrors || !form.syncErrors[fieldName]) {
+export const ClientValidateMessages = ({ name }) => {
+    const clientError = useSelector(state => state.clientError.payload);
+    if (!(name in clientError) || !clientError[name].filter(value => !!value).length) {
         return null;
     }
-    const message = form.syncErrors[fieldName];
-    const attribute = attributes[fieldName];
+    const attribute = attributes[name];
     return (
         <div className="validate-messages">
             <ul>
-                <li>{message.replace(':attribute', attribute)}</li>
+                <Messages attribute={attribute} values={clientError[name]} />
             </ul>
         </div>
     );
+}
+
+const Messages = ({ attribute, values }) => {
+    return values.filter(value => !!value).map(value => {
+        return (
+            <li key={value}>{value.replace(':attribute', attribute)}</li>
+        );
+    });
 }

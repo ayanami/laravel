@@ -5,7 +5,7 @@ import { Switch } from 'react-router';
 import { ConnectedRouter } from 'connected-react-router';
 import store from './redux/store';
 import { history } from './react/history';
-import { WrappedRoute } from './components/wrapped.route.component';
+import { WrappedRoute } from './components/react/wrapped.route.component';
 import ShopListContainer from './containers/shop/shop.list.container';
 import ShopCreateContainer from './containers/shop/shop.create.container';
 
