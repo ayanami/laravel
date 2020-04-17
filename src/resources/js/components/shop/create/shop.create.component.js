@@ -1,12 +1,13 @@
 import React, { useCallback } from 'react';
+import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import * as actions from '../../../actions/shop/shop.create.action';
-import { WrappedField } from '../../redux/wrapped.field.component';
 import * as validators from '../../../validation/validator';
 import { ClientValidateMessages } from '../../error/client.validate.messages.component';
 import { ServerValidateMessages } from '../../error/server.validate.messages.component';
 
 export const ShopCreate = (props) => {
+    const { register, handleSubmit } = useForm();
     const dispatch = useDispatch();
     const submit = useCallback(value => {
         dispatch(actions.postShopCreate(value, () =>
@@ -17,39 +18,14 @@ export const ShopCreate = (props) => {
         <div className="panel panel-default">
             <div className="panel-heading">店舗を追加する</div>
             <div className="panel-body">
-                <form onSubmit={props.handleSubmit(submit)}>
+                <form onSubmit={handleSubmit(submit)}>
                     <div className="form-group">
                         <label htmlFor="name">名前</label>
-                        <WrappedField
-                            form="shopCreate"
-                            id={'name'}
-                            name="name"
-                            component="input"
-                            type="text"
-                            className="form-control"
-                            validate={[
-                                validators.required,
-                                validators.max(50)
-                            ]}
-                        />
-                        <ClientValidateMessages name="name" />
-                        <ServerValidateMessages name="name" />
+                        <input id={'name'} name="name" type="text" className="form-control" ref={register} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="rate">レート</label>
-                        <WrappedField
-                            form="shopCreate"
-                            id={'rate'}
-                            name="rate"
-                            component="input"
-                            type="text"
-                            className="form-control"
-                            validate={[
-                                validators.required
-                            ]}
-                        />
-                        <ClientValidateMessages name="rate" />
-                        <ServerValidateMessages name="rate" />
+                        <input id={'rate'} name="rate" type="text" className="form-control" ref={register} />
                     </div>
                     <div className="text-right">
                         <button type="submit" className="btn btn-primary">送信</button>
