@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { ShopInput } from '../common/shop.input.component';
 
-export const ShopCreate = () => {
+export const ShopEdit = () => {
     const { register, handleSubmit, errors } = useForm();
     return (
         <ShopInput

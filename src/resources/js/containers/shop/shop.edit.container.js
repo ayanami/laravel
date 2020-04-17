@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../actions/shop/shop.list.action';
 import { ErrorPage } from '../../components/error/error.page.component';
-import { ShopList } from '../../components/shop/list/shop.list.component';
-import { log } from '../../utils/log.utils';
+import { ShopEdit } from '../../components/shop/edit/shop.edit.component';
+import * as actions from '../../actions/shop/shop.edit.action';
 
-class ShopListContainer extends Component {
+class ShopEditContainer extends Component {
     componentDidMount() {
-        this.props.initShopList();
+        this.props.initShopEdit();
     }
     render() {
-        log({ props: this.props });
         return (
             <ErrorPage>
-                <ShopList />
+                <ShopEdit />
             </ErrorPage>
         );
     }
@@ -22,4 +20,4 @@ class ShopListContainer extends Component {
 export default connect(
     state => ({ shops: state.shops }),
     actions
-)(ShopListContainer);
+)(ShopEditContainer);

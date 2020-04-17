@@ -8,6 +8,7 @@ import { history } from './react/history';
 import { WrappedRoute } from './components/react/wrapped.route.component';
 import ShopListContainer from './containers/shop/shop.list.container';
 import ShopCreateContainer from './containers/shop/shop.create.container';
+import ShopEditContainer from './containers/shop/shop.edit.container';
 
 const root = document.getElementById('root');
 if (root) {
@@ -15,8 +16,9 @@ if (root) {
         <Provider store={store}>
             <ConnectedRouter history={history}>
                 <Switch>
-                    <WrappedRoute exact path="/shop/list" component={ShopListContainer} />
+                    <WrappedRoute path="/shop/list" component={ShopListContainer} />
                     <WrappedRoute path="/shop/create" component={ShopCreateContainer} />
+                    <WrappedRoute path="/shop/edit/:id" component={ShopEditContainer} />
                 </Switch>
             </ConnectedRouter>
         </Provider>,

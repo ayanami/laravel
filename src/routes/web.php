@@ -26,3 +26,7 @@ Route::get('/shop/list', function() {
 Route::get('/shop/create', function() {
     return view('root');
 })->middleware('verified')->name('shop.create');
+
+Route::get('/shop/edit/{id}', function() {
+    return view('root');
+})->middleware('verified')->name('shop.edit');
