@@ -1,4 +1,4 @@
-import { call, takeEvery } from 'redux-saga/effects';
+import { call, takeLatest } from 'redux-saga/effects';
 import store from '../../redux/store';
 import { get } from '../../utils/axios.utils';
 import * as actions from '../../actions/shop/shop.list.action';
@@ -10,5 +10,5 @@ function* getShopList() {
 }
 
 export default function* shopListSaga() {
-    yield takeEvery(actions.INIT_SHOP_LIST, getShopList);
+    yield takeLatest(actions.INIT_SHOP_LIST, getShopList);
 }

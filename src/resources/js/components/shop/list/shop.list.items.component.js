@@ -1,13 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { log } from '../../../utils/log.utils';
 
 export const ShopListItems = () => {
-    const shops = useSelector(state => {
-        log({ state: state });
-        return state.shops.payload;
-    });
-    log({ shops: shops });
+    const shops = useSelector(state => state.shops.payload);
     return shops.map(shop => {
         return (
             <tr key={shop.id}>
@@ -17,9 +13,9 @@ export const ShopListItems = () => {
                     <span className="label">{shop.rate}</span>
                 </td>
                 <td>
-                    <a href="#">
+                    <Link to={'/shop/edit/' + shop.id}>
                         <i className="fa fa-edit" aria-hidden="true" style={{ fontSize: "20px" }} />
-                    </a>
+                    </Link>
                 </td>
             </tr>
         );

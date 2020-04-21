@@ -1,14 +1,12 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import * as actions from '../../../actions/shop/shop.create.action';
 import { ShopInput } from '../common/shop.input.component';
 
-export const ShopCreate = () => {
-    const { register, handleSubmit, errors } = useForm();
+export const ShopCreate = (props) => {
     return (
         <ShopInput
-            register={register}
-            handleSubmit={handleSubmit}
-            errors={errors}
+            {...props}
+            action={actions.postShopCreate}
         />
     );
 }

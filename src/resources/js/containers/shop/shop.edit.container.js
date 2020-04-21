@@ -6,18 +6,18 @@ import * as actions from '../../actions/shop/shop.edit.action';
 
 class ShopEditContainer extends Component {
     componentDidMount() {
-        this.props.initShopEdit();
+        this.props.initShopEdit(this.props.match.params.id);
     }
     render() {
         return (
             <ErrorPage>
-                <ShopEdit />
+                <ShopEdit {...this.props} />
             </ErrorPage>
         );
     }
 }
 
 export default connect(
-    state => ({ shops: state.shops }),
+    state => ({ shop: state.shop }),
     actions
 )(ShopEditContainer);

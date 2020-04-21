@@ -11,7 +11,7 @@ class ShopCreateContainer extends Component {
     render() {
         return (
             <ErrorPage>
-                <ShopCreate />
+                <ShopCreate {...this.props} />
             </ErrorPage>
         );
     }
