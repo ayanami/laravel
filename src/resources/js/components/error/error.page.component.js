@@ -6,7 +6,7 @@ export const ErrorPage = ({ children }) => {
     if (!serverError || serverError.status == 422) {
         return children;
     }
-    const message = serverError.data.message || serverError.data;
+    const message = serverError.data.message ?? serverError.data;
     return (
         <div className="flex-center position-ref full-height">
             <div className="code">{serverError.status}</div>

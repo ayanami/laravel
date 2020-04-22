@@ -1,7 +1,6 @@
 import wrapper from '../service/axios.wrapper';
 
-export const get = (path, callback) => wrapper
-    .get(path)
+export const get = (path, callback) => wrapper.get(path)
     .then(response => {
         console.log("response: ", response);
         if (Object.keys(response).length) {

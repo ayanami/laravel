@@ -9,11 +9,15 @@ class ShopEditContainer extends Component {
         this.props.initShopEdit(this.props.match.params.id);
     }
     render() {
-        return (
-            <ErrorPage>
-                <ShopEdit {...this.props} />
-            </ErrorPage>
-        );
+        if (this.props.shop.type === actions.GET_SHOP_EDIT) {
+            return (
+                <ErrorPage>
+                    <ShopEdit {...this.props} />
+                </ErrorPage>
+            );
+        } else {
+            return <p>Loading...</p>
+        }
     }
 }
 
