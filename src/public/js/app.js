@@ -83424,7 +83424,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var ShopList = function ShopList(props) {
+var ShopList = function ShopList() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "panel panel-default"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -83438,7 +83438,7 @@ var ShopList = function ShopList(props) {
     className: "btn btn-default btn-block"
   }, "\u8FFD\u52A0"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
     className: "table"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "ID"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "\u540D\u524D"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "\u30EC\u30FC\u30C8"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shop_list_items_component__WEBPACK_IMPORTED_MODULE_2__["ShopListItems"], props))));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "ID"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "\u540D\u524D"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "\u30EC\u30FC\u30C8"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shop_list_items_component__WEBPACK_IMPORTED_MODULE_2__["ShopListItems"], null))));
 };
 
 /***/ }),
@@ -83464,7 +83464,7 @@ var _this = undefined;
 
 
 
-var ShopListItems = function ShopListItems(props) {
+var ShopListItems = function ShopListItems() {
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
   var handleClick = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function (id) {
     dispatch(_actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_3__["deleteShop"](id));
@@ -83704,7 +83704,7 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_error_error_page_component__WEBPACK_IMPORTED_MODULE_3__["ErrorPage"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_shop_list_shop_list_component__WEBPACK_IMPORTED_MODULE_4__["ShopList"], this.props));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_error_error_page_component__WEBPACK_IMPORTED_MODULE_3__["ErrorPage"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_shop_list_shop_list_component__WEBPACK_IMPORTED_MODULE_4__["ShopList"], null));
     }
   }]);
 

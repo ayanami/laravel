@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ShopListItems } from './shop.list.items.component';
 
-export const ShopList = (props) => {
+export const ShopList = () => {
     return (
         <div className="panel panel-default">
             <div className="panel-heading">店舗</div>
@@ -21,7 +21,7 @@ export const ShopList = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    <ShopListItems {...props} />
+                    <ShopListItems />
                 </tbody>
             </table>
         </div>

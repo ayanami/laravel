@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../../actions/shop/shop.list.action';
 
-export const ShopListItems = (props) => {
+export const ShopListItems = () => {
     const dispatch = useDispatch();
     const handleClick = useCallback(id => {
         dispatch(actions.deleteShop(id));

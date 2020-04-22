@@ -11,7 +11,7 @@ class ShopListContainer extends Component {
     render() {
         return (
             <ErrorPage>
-                <ShopList {...this.props} />
+                <ShopList />
             </ErrorPage>
         );
     }
