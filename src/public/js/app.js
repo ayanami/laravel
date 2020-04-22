@@ -83030,7 +83030,7 @@ var patchShopEdit = Object(redux_actions__WEBPACK_IMPORTED_MODULE_0__["createAct
 /*!*******************************************************!*\
   !*** ./resources/js/actions/shop/shop.list.action.js ***!
   \*******************************************************/
-/*! exports provided: INIT_SHOP_LIST, initShopList, GET_SHOP_LIST, getShopList */
+/*! exports provided: INIT_SHOP_LIST, initShopList, GET_SHOP_LIST, getShopList, DELETE_SHOP, deleteShop */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -83039,12 +83039,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initShopList", function() { return initShopList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_SHOP_LIST", function() { return GET_SHOP_LIST; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getShopList", function() { return getShopList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETE_SHOP", function() { return DELETE_SHOP; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteShop", function() { return deleteShop; });
 /* harmony import */ var redux_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-actions */ "./node_modules/redux-actions/es/index.js");
 
 var INIT_SHOP_LIST = 'INIT_SHOP_LIST';
 var initShopList = Object(redux_actions__WEBPACK_IMPORTED_MODULE_0__["createAction"])(INIT_SHOP_LIST);
 var GET_SHOP_LIST = 'GET_SHOP_LIST';
 var getShopList = Object(redux_actions__WEBPACK_IMPORTED_MODULE_0__["createAction"])(GET_SHOP_LIST);
+var DELETE_SHOP = 'DELETE_SHOP';
+var deleteShop = Object(redux_actions__WEBPACK_IMPORTED_MODULE_0__["createAction"])(DELETE_SHOP);
 
 /***/ }),
 
@@ -83420,7 +83424,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var ShopList = function ShopList() {
+var ShopList = function ShopList(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "panel panel-default"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -83434,7 +83438,7 @@ var ShopList = function ShopList() {
     className: "btn btn-default btn-block"
   }, "\u8FFD\u52A0"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
     className: "table"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "ID"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "\u540D\u524D"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "\u30EC\u30FC\u30C8"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shop_list_items_component__WEBPACK_IMPORTED_MODULE_2__["ShopListItems"], null))));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "ID"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "\u540D\u524D"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "\u30EC\u30FC\u30C8"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shop_list_items_component__WEBPACK_IMPORTED_MODULE_2__["ShopListItems"], props))));
 };
 
 /***/ }),
@@ -83453,10 +83457,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/shop/shop.list.action */ "./resources/js/actions/shop/shop.list.action.js");
+var _this = undefined;
 
 
 
-var ShopListItems = function ShopListItems() {
+
+
+var ShopListItems = function ShopListItems(props) {
+  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
+  var handleClick = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function (id) {
+    dispatch(_actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_3__["deleteShop"](id));
+  }, []);
   var shops = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(function (state) {
     return state.shops.payload;
   });
@@ -83469,6 +83481,15 @@ var ShopListItems = function ShopListItems() {
       to: '/shop/edit/' + shop.id
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       className: "fa fa-edit",
+      "aria-hidden": "true",
+      style: {
+        fontSize: "20px"
+      }
+    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "#",
+      onClick: handleClick.bind(_this, shop.id)
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "fa fa-trash",
       "aria-hidden": "true",
       style: {
         fontSize: "20px"
@@ -83683,7 +83704,7 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_error_error_page_component__WEBPACK_IMPORTED_MODULE_3__["ErrorPage"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_shop_list_shop_list_component__WEBPACK_IMPORTED_MODULE_4__["ShopList"], null));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_error_error_page_component__WEBPACK_IMPORTED_MODULE_3__["ErrorPage"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_shop_list_shop_list_component__WEBPACK_IMPORTED_MODULE_4__["ShopList"], this.props));
     }
   }]);
 
@@ -83977,7 +83998,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _marked =
 /*#__PURE__*/
-_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(postShopData),
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(postShop),
     _marked2 =
 /*#__PURE__*/
 _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(shopCreateSaga);
@@ -83986,8 +84007,8 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(shopCreat
 
 
 
-function postShopData(action) {
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function postShopData$(_context) {
+function postShop(action) {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function postShop$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
@@ -84010,7 +84031,7 @@ function shopCreateSaga() {
       switch (_context2.prev = _context2.next) {
         case 0:
           _context2.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions_shop_shop_create_action__WEBPACK_IMPORTED_MODULE_3__["POST_SHOP_CREATE"], postShopData);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions_shop_shop_create_action__WEBPACK_IMPORTED_MODULE_3__["POST_SHOP_CREATE"], postShop);
 
         case 2:
         case "end":
@@ -84042,10 +84063,10 @@ __webpack_require__.r(__webpack_exports__);
 
 var _marked =
 /*#__PURE__*/
-_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(getShopEdit),
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(getShop),
     _marked2 =
 /*#__PURE__*/
-_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(patchShopEdit),
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(patchShop),
     _marked3 =
 /*#__PURE__*/
 _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(shopEditSaga);
@@ -84055,8 +84076,8 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(shopEditS
 
 
 
-function getShopEdit(action) {
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function getShopEdit$(_context) {
+function getShop(action) {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function getShop$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
@@ -84073,8 +84094,8 @@ function getShopEdit(action) {
   }, _marked);
 }
 
-function patchShopEdit(action) {
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function patchShopEdit$(_context2) {
+function patchShop(action) {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function patchShop$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
@@ -84097,11 +84118,11 @@ function shopEditSaga() {
       switch (_context3.prev = _context3.next) {
         case 0:
           _context3.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions_shop_shop_edit_action__WEBPACK_IMPORTED_MODULE_4__["INIT_SHOP_EDIT"], getShopEdit);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions_shop_shop_edit_action__WEBPACK_IMPORTED_MODULE_4__["INIT_SHOP_EDIT"], getShop);
 
         case 2:
           _context3.next = 4;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions_shop_shop_edit_action__WEBPACK_IMPORTED_MODULE_4__["PATCH_SHOP_EDIT"], patchShopEdit);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions_shop_shop_edit_action__WEBPACK_IMPORTED_MODULE_4__["PATCH_SHOP_EDIT"], patchShop);
 
         case 4:
         case "end":
@@ -84133,8 +84154,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var _marked =
 /*#__PURE__*/
-_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(getShopList),
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(getShops),
     _marked2 =
+/*#__PURE__*/
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(deleteShop),
+    _marked3 =
 /*#__PURE__*/
 _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(shopListSaga);
 
@@ -84143,8 +84167,8 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(shopListS
 
 
 
-function getShopList() {
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function getShopList$(_context) {
+function getShops() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function getShops$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
@@ -84161,13 +84185,15 @@ function getShopList() {
   }, _marked);
 }
 
-function shopListSaga() {
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function shopListSaga$(_context2) {
+function deleteShop(action) {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function deleteShop$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
           _context2.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_4__["INIT_SHOP_LIST"], getShopList);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_utils_axios_utils__WEBPACK_IMPORTED_MODULE_3__["del"], '/api/shop/delete/' + action.payload, function () {
+            _redux_store__WEBPACK_IMPORTED_MODULE_2__["default"].dispatch(_actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_4__["initShopList"]());
+          });
 
         case 2:
         case "end":
@@ -84175,6 +84201,26 @@ function shopListSaga() {
       }
     }
   }, _marked2);
+}
+
+function shopListSaga() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function shopListSaga$(_context3) {
+    while (1) {
+      switch (_context3.prev = _context3.next) {
+        case 0:
+          _context3.next = 2;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_4__["INIT_SHOP_LIST"], getShops);
+
+        case 2:
+          _context3.next = 4;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_4__["DELETE_SHOP"], deleteShop);
+
+        case 4:
+        case "end":
+          return _context3.stop();
+      }
+    }
+  }, _marked3);
 }
 
 /***/ }),
@@ -84221,7 +84267,7 @@ wrapper.interceptors.response.use(onSuccess, onError);
 /*!*******************************************!*\
   !*** ./resources/js/utils/axios.utils.js ***!
   \*******************************************/
-/*! exports provided: get, post, patch */
+/*! exports provided: get, post, patch, del */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -84229,10 +84275,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "get", function() { return get; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "post", function() { return post; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "patch", function() { return patch; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "del", function() { return del; });
 /* harmony import */ var _service_axios_wrapper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../service/axios.wrapper */ "./resources/js/service/axios.wrapper.js");
 
 var get = function get(path, callback) {
-  return _service_axios_wrapper__WEBPACK_IMPORTED_MODULE_0__["default"].get(path).then(function (response) {
+  console.log("path: ", path);
+  _service_axios_wrapper__WEBPACK_IMPORTED_MODULE_0__["default"].get(path).then(function (response) {
     console.log("response: ", response);
 
     if (Object.keys(response).length) {
@@ -84250,7 +84298,9 @@ var get = function get(path, callback) {
   });
 };
 var post = function post(path, request, callback) {
-  return _service_axios_wrapper__WEBPACK_IMPORTED_MODULE_0__["default"].post(path, request).then(function (response) {
+  console.log("path: ", path);
+  console.log("request: ", request);
+  _service_axios_wrapper__WEBPACK_IMPORTED_MODULE_0__["default"].post(path, request).then(function (response) {
     console.log("response: ", response);
 
     if (Object.keys(response).length) {
@@ -84268,7 +84318,28 @@ var post = function post(path, request, callback) {
   });
 };
 var patch = function patch(path, request, callback) {
-  return _service_axios_wrapper__WEBPACK_IMPORTED_MODULE_0__["default"].patch(path, request).then(function (response) {
+  console.log("path: ", path);
+  console.log("request: ", request);
+  _service_axios_wrapper__WEBPACK_IMPORTED_MODULE_0__["default"].patch(path, request).then(function (response) {
+    console.log("response: ", response);
+
+    if (Object.keys(response).length) {
+      callback(response);
+    }
+
+    return {
+      response: response
+    };
+  })["catch"](function (error) {
+    console.log("error: ", error);
+    return {
+      error: error
+    };
+  });
+};
+var del = function del(path, callback) {
+  console.log("path: ", path);
+  _service_axios_wrapper__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"](path).then(function (response) {
     console.log("response: ", response);
 
     if (Object.keys(response).length) {

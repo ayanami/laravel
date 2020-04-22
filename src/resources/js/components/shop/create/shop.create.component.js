@@ -8,8 +8,8 @@ export const ShopCreate = (props) => {
     const submit = value => {
         dispatch(actions.postShopCreate(
             value,
-            () => props.history.push('/shop/list'))
-        );
+            () => props.history.push('/shop/list')
+        ));
     }
     return (
         <div className="panel panel-default">

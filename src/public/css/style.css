@@ -6,7 +6,8 @@ body {
   background-color: #f4f7f8;
 }
 
-.table td:nth-child(4) {
+.table td:nth-child(4),
+.table td:nth-child(5) {
   white-space: nowrap;
   width: 1px;
 }

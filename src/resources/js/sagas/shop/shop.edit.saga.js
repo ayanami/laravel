@@ -3,19 +3,19 @@ import store from '../../redux/store';
 import { get, patch } from '../../utils/axios.utils';
 import * as actions from '../../actions/shop/shop.edit.action';
 
-function* getShopEdit(action) {
+function* getShop(action) {
     yield call(get, '/api/shop/edit/' + action.payload, response => {
         store.dispatch(actions.getShopEdit(response.data));
     });
 }
 
-function* patchShopEdit(action) {
+function* patchShop(action) {
     yield call(patch, '/api/shop/edit/' + action.payload.id, action.payload.value, () => {
         action.payload.callback();
     });
 }
 
 export default function* shopEditSaga() {
-    yield takeLatest(actions.INIT_SHOP_EDIT, getShopEdit);
-    yield takeLatest(actions.PATCH_SHOP_EDIT, patchShopEdit);
+    yield takeLatest(actions.INIT_SHOP_EDIT, getShop);
+    yield takeLatest(actions.PATCH_SHOP_EDIT, patchShop);
 }

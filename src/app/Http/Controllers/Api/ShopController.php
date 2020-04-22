@@ -43,4 +43,11 @@ class ShopController extends Controller
 
         return response('edit shop succeed', 200);
     }
+
+    public function delete(int $id)
+    {
+        Shop::find($id)->delete();
+
+        return response('delete shop succeed', 200);
+    }
 }

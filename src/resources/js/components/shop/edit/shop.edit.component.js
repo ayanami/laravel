@@ -10,8 +10,8 @@ export const ShopEdit = (props) => {
         dispatch(actions.patchShopEdit(
             props.match.params.id,
             value,
-            () => props.history.push('/shop/list'))
-        );
+            () => props.history.push('/shop/list')
+        ));
     }
     return (
         <div className="panel panel-default">
