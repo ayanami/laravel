@@ -10,7 +10,7 @@ function* getShop(action) {
 }
 
 function* patchShop(action) {
-    yield call(patch, '/api/shop/edit/' + action.payload.id, action.payload.value, () => {
+    yield call(patch, '/api/shop/edit/' + action.payload.id, action.payload.values, () => {
         action.payload.callback();
     });
 }

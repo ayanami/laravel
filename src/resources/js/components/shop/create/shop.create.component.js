@@ -5,9 +5,9 @@ import { ShopInput } from '../common/shop.input.component';
 
 export const ShopCreate = (props) => {
     const dispatch = useDispatch();
-    const submit = value => {
+    const submit = values => {
         dispatch(actions.postShopCreate(
-            value,
+            values,
             () => props.history.push('/shop/list')
         ));
     }

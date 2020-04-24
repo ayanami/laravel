@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as validators from '../../../validation/validator';
 import { ClientValidateMessages } from '../../error/client.validate.messages.component';
@@ -8,15 +8,19 @@ export const ShopInput = (props) => {
     console.log("props: ", props);
     const shop = props?.shop?.payload;
     console.log("shop: ", shop);
-    const { register, handleSubmit, errors } = useForm({
+    const { register, errors, handleSubmit } = useForm({
         defaultValues: {
             name: shop?.name,
             rate: shop?.rate
         }
     });
+    const [disabled, setDisabled] = useState(false);
     return (
         <div className="panel-body">
-            <form onSubmit={handleSubmit(props.submit)}>
+            <form onSubmit={handleSubmit((values) => {
+                setDisabled(true);
+                props.submit(values);
+            })}>
                 <div className="form-group">
                     <label htmlFor="name">名前</label>
                     <input
@@ -24,6 +28,7 @@ export const ShopInput = (props) => {
                         name="name"
                         type="text"
                         className="form-control"
+                        onChange={() => setDisabled(false)}
                         ref={register({
                             validate: {
                                 required: validators.required,
@@ -41,6 +46,7 @@ export const ShopInput = (props) => {
                         name="rate"
                         type="text"
                         className="form-control"
+                        onChange={() => setDisabled(false)}
                         ref={register({
                             validate: {
                                 required: validators.required,
@@ -52,7 +58,10 @@ export const ShopInput = (props) => {
                     <ServerValidateMessages name="rate" />
                 </div>
                 <div className="text-right">
-                    <button type="submit" className="btn btn-primary">送信</button>
+                    <button
+                        type="submit"
+                        className="btn btn-primary"
+                        disabled={disabled}>送信</button>
                 </div>
             </form>
         </div>

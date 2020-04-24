@@ -6,10 +6,10 @@ import { ShopInput } from '../common/shop.input.component';
 export const ShopEdit = (props) => {
 
     const dispatch = useDispatch();
-    const submit = value => {
+    const submit = values => {
         dispatch(actions.patchShopEdit(
             props.match.params.id,
-            value,
+            values,
             () => props.history.push('/shop/list')
         ));
     }

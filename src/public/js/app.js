@@ -82985,9 +82985,9 @@ __webpack_require__.r(__webpack_exports__);
 var INIT_SHOP_CREATE = 'INIT_SHOP_CREATE';
 var initShopCreate = Object(redux_actions__WEBPACK_IMPORTED_MODULE_0__["createAction"])(INIT_SHOP_CREATE);
 var POST_SHOP_CREATE = 'POST_SHOP_CREATE';
-var postShopCreate = Object(redux_actions__WEBPACK_IMPORTED_MODULE_0__["createAction"])(POST_SHOP_CREATE, function (value, callback) {
+var postShopCreate = Object(redux_actions__WEBPACK_IMPORTED_MODULE_0__["createAction"])(POST_SHOP_CREATE, function (values, callback) {
   return {
-    value: value,
+    values: values,
     callback: callback
   };
 });
@@ -83019,7 +83019,7 @@ var PATCH_SHOP_EDIT = 'PATCH_SHOP_EDIT';
 var patchShopEdit = Object(redux_actions__WEBPACK_IMPORTED_MODULE_0__["createAction"])(PATCH_SHOP_EDIT, function (id, value, callback) {
   return {
     id: id,
-    value: value,
+    values: values,
     callback: callback
   };
 });
@@ -83249,6 +83249,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _validation_validator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../validation/validator */ "./resources/js/validation/validator.js");
 /* harmony import */ var _error_client_validate_messages_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../error/client.validate.messages.component */ "./resources/js/components/error/client.validate.messages.component.js");
 /* harmony import */ var _error_server_validate_messages_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../error/server.validate.messages.component */ "./resources/js/components/error/server.validate.messages.component.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -83268,13 +83276,21 @@ var ShopInput = function ShopInput(props) {
     }
   }),
       register = _useForm.register,
-      handleSubmit = _useForm.handleSubmit,
-      errors = _useForm.errors;
+      errors = _useForm.errors,
+      handleSubmit = _useForm.handleSubmit;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      disabled = _useState2[0],
+      setDisabled = _useState2[1];
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "panel-body"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-    onSubmit: handleSubmit(props.submit)
+    onSubmit: handleSubmit(function (values) {
+      setDisabled(true);
+      props.submit(values);
+    })
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -83284,9 +83300,11 @@ var ShopInput = function ShopInput(props) {
     name: "name",
     type: "text",
     className: "form-control",
+    onChange: function onChange() {
+      return setDisabled(false);
+    },
     ref: register({
       validate: {
-        required: _validation_validator__WEBPACK_IMPORTED_MODULE_2__["required"],
         maxLength: _validation_validator__WEBPACK_IMPORTED_MODULE_2__["maxLength"](50)
       }
     })
@@ -83319,7 +83337,8 @@ var ShopInput = function ShopInput(props) {
     className: "text-right"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "submit",
-    className: "btn btn-primary"
+    className: "btn btn-primary",
+    disabled: disabled
   }, "\u9001\u4FE1"))));
 };
 
@@ -83349,8 +83368,8 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 var ShopCreate = function ShopCreate(props) {
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
 
-  var submit = function submit(value) {
-    dispatch(_actions_shop_shop_create_action__WEBPACK_IMPORTED_MODULE_2__["postShopCreate"](value, function () {
+  var submit = function submit(values) {
+    dispatch(_actions_shop_shop_create_action__WEBPACK_IMPORTED_MODULE_2__["postShopCreate"](values, function () {
       return props.history.push('/shop/list');
     }));
   };
@@ -83390,8 +83409,8 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 var ShopEdit = function ShopEdit(props) {
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
 
-  var submit = function submit(value) {
-    dispatch(_actions_shop_shop_edit_action__WEBPACK_IMPORTED_MODULE_2__["patchShopEdit"](props.match.params.id, value, function () {
+  var submit = function submit(values) {
+    dispatch(_actions_shop_shop_edit_action__WEBPACK_IMPORTED_MODULE_2__["patchShopEdit"](props.match.params.id, values, function () {
       return props.history.push('/shop/list');
     }));
   };
@@ -84013,7 +84032,7 @@ function postShop(action) {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_utils_axios_utils__WEBPACK_IMPORTED_MODULE_2__["post"], '/api/shop/create', action.payload.value, function () {
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_utils_axios_utils__WEBPACK_IMPORTED_MODULE_2__["post"], '/api/shop/create', action.payload.values, function () {
             action.payload.callback();
           });
 
@@ -84100,7 +84119,7 @@ function patchShop(action) {
       switch (_context2.prev = _context2.next) {
         case 0:
           _context2.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_utils_axios_utils__WEBPACK_IMPORTED_MODULE_3__["patch"], '/api/shop/edit/' + action.payload.id, action.payload.value, function () {
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_utils_axios_utils__WEBPACK_IMPORTED_MODULE_3__["patch"], '/api/shop/edit/' + action.payload.id, action.payload.values, function () {
             action.payload.callback();
           });
 

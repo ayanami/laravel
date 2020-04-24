@@ -3,7 +3,7 @@ import { post } from '../../utils/axios.utils';
 import * as actions from '../../actions/shop/shop.create.action';
 
 function* postShop(action) {
-    yield call(post, '/api/shop/create', action.payload.value, () => {
+    yield call(post, '/api/shop/create', action.payload.values, () => {
         action.payload.callback();
     });
 }
