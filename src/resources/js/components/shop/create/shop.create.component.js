@@ -14,10 +14,7 @@ export const ShopCreate = (props) => {
     return (
         <div className="panel panel-default">
             <div className="panel-heading">店舗を追加する</div>
-            <ShopInput
-                {...props}
-                submit={submit}
-            />
+            <ShopInput {...props} submit={submit} />
         </div>
     );
 }

@@ -16,10 +16,7 @@ export const ShopEdit = (props) => {
     return (
         <div className="panel panel-default">
             <div className="panel-heading">店舗を変更する</div>
-            <ShopInput
-                {...props}
-                submit={submit}
-            />
+            <ShopInput {...props} submit={submit} />
         </div>
     );
 }
