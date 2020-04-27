@@ -83121,6 +83121,56 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/components/custom/double.click.protect.anchor.component.js":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/custom/double.click.protect.anchor.component.js ***!
+  \*********************************************************************************/
+/*! exports provided: DoubleClickProtectAnchor */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DoubleClickProtectAnchor", function() { return DoubleClickProtectAnchor; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _this = undefined;
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+var DoubleClickProtectAnchor = function DoubleClickProtectAnchor(ChildComponent) {
+  return function (props) {
+    var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+        _useState2 = _slicedToArray(_useState, 2),
+        disabled = _useState2[0],
+        setDisabled = _useState2[1];
+
+    var handler = function handler() {
+      var _props$listener;
+
+      setDisabled(true);
+      console.log("hoge");
+      (_props$listener = props.listener) === null || _props$listener === void 0 ? void 0 : _props$listener.call(props);
+    };
+
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: props.href,
+      onClick: handler.bind(_this),
+      style: disabled ? {
+        pointerEvents: "none"
+      } : null
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ChildComponent, null));
+  };
+};
+
+/***/ }),
+
 /***/ "./resources/js/components/custom/double.submit.protect.form.component.js":
 /*!********************************************************************************!*\
   !*** ./resources/js/components/custom/double.submit.protect.form.component.js ***!
@@ -83142,7 +83192,7 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
-var DoubleSubmitProtectForm = function DoubleSubmitProtectForm(FormComponent) {
+var DoubleSubmitProtectForm = function DoubleSubmitProtectForm(ChildComponent) {
   return function (_ref) {
     var register = _ref.register,
         errors = _ref.errors,
@@ -83163,7 +83213,7 @@ var DoubleSubmitProtectForm = function DoubleSubmitProtectForm(FormComponent) {
       onSubmit: handler(function (values) {
         submitHandler(values);
       })
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(FormComponent, {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ChildComponent, {
       disabled: disabled,
       setdisabled: setDisabled,
       register: register,
@@ -83221,8 +83271,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ErrorPage = function ErrorPage(_ref) {
-  var _serverError$data$mes;
-
   var children = _ref.children;
   var serverError = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
     return state.serverError.payload;
@@ -83232,7 +83280,7 @@ var ErrorPage = function ErrorPage(_ref) {
     return children;
   }
 
-  var message = (_serverError$data$mes = serverError.data.message) !== null && _serverError$data$mes !== void 0 ? _serverError$data$mes : serverError.data;
+  var message = serverError.data.message || serverError.data;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex-center position-ref full-height"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -83525,35 +83573,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ShopListItems", function() { return ShopListItems; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/shop/shop.list.action */ "./resources/js/actions/shop/shop.list.action.js");
-var _this = undefined;
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/shop/shop.list.action */ "./resources/js/actions/shop/shop.list.action.js");
+/* harmony import */ var _custom_double_click_protect_anchor_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../custom/double.click.protect.anchor.component */ "./resources/js/components/custom/double.click.protect.anchor.component.js");
 
 
 
 
-
+var EditLink = Object(_custom_double_click_protect_anchor_component__WEBPACK_IMPORTED_MODULE_3__["DoubleClickProtectAnchor"])(function () {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fa fa-edit",
+    "aria-hidden": "true",
+    style: {
+      fontSize: "20px"
+    }
+  });
+});
+var DeleteButton = Object(_custom_double_click_protect_anchor_component__WEBPACK_IMPORTED_MODULE_3__["DoubleClickProtectAnchor"])(function () {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fa fa-trash",
+    "aria-hidden": "true",
+    style: {
+      fontSize: "20px"
+    }
+  });
+});
 var ShopListItems = function ShopListItems() {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      disabled = _useState2[0],
-      setDisabled = _useState2[1];
-
-  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
-  var handleClick = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function (id) {
-    setDisabled(true);
-    dispatch(_actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_3__["deleteShop"](id));
-  }, []);
-  var shops = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(function (state) {
+  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
+  var shops = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
     return state.shops.payload;
   });
   return shops.map(function (shop) {
@@ -83561,26 +83608,13 @@ var ShopListItems = function ShopListItems() {
       key: shop.id
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, shop.id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, shop.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "label"
-    }, shop.rate)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-      to: '/shop/edit/' + shop.id
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      className: "fa fa-edit",
-      "aria-hidden": "true",
-      style: {
-        fontSize: "20px"
+    }, shop.rate)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(EditLink, {
+      href: '/shop/edit/' + shop.id
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(DeleteButton, {
+      listener: function listener() {
+        dispatch(_actions_shop_shop_list_action__WEBPACK_IMPORTED_MODULE_2__["deleteShop"](shop.id));
       }
-    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-      onClick: handleClick.bind(_this, shop.id),
-      style: disabled ? {
-        pointerEvents: "none"
-      } : null
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      className: "fa fa-trash",
-      "aria-hidden": "true",
-      style: {
-        fontSize: "20px"
-      }
-    }))));
+    })));
   });
 };
 

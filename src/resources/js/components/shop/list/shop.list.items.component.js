@@ -1,15 +1,21 @@
-import React, { useState, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../../actions/shop/shop.list.action';
+import { DoubleClickProtectAnchor } from '../../custom/double.click.protect.anchor.component';
+
+const EditLink = DoubleClickProtectAnchor(() => {
+    return (
+        <i className="fa fa-edit" aria-hidden="true" style={{ fontSize: "20px" }} />
+    );
+});
+const DeleteButton = DoubleClickProtectAnchor(() => {
+    return (
+        <i className="fa fa-trash" aria-hidden="true" style={{ fontSize: "20px" }} />
+    );
+});
 
 export const ShopListItems = () => {
-    const [disabled, setDisabled] = useState(false);
     const dispatch = useDispatch();
-    const handleClick = useCallback(id => {
-        setDisabled(true);
-        dispatch(actions.deleteShop(id));
-    }, []);
     const shops = useSelector(state => state.shops.payload);
     return shops.map(shop => {
         return (
@@ -20,14 +26,10 @@ export const ShopListItems = () => {
                     <span className="label">{shop.rate}</span>
                 </td>
                 <td>
-                    <Link to={'/shop/edit/' + shop.id}>
-                        <i className="fa fa-edit" aria-hidden="true" style={{ fontSize: "20px" }} />
-                    </Link>
+                    <EditLink href={'/shop/edit/' + shop.id} />
                 </td>
                 <td>
-                    <Link onClick={handleClick.bind(this, shop.id)} style={disabled ? { pointerEvents: "none" } : null}>
-                        <i className="fa fa-trash" aria-hidden="true" style={{ fontSize: "20px" }} />
-                    </Link>
+                    <DeleteButton listener={() => { dispatch(actions.deleteShop(shop.id)) }} />
                 </td>
             </tr>
         );

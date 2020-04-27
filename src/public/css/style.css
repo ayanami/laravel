@@ -1,64 +1,68 @@
 @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
 @import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/bootflat/2.0.4/css/bootflat.min.css');
-
 body {
-  background-color: #f4f7f8;
+    background-color: #f4f7f8;
+}
+
+a:not([href]) {
+    color: #3bafda;
+    cursor: pointer;
 }
 
 .table td:nth-child(4),
 .table td:nth-child(5) {
-  white-space: nowrap;
-  width: 1px;
+    white-space: nowrap;
+    width: 1px;
 }
 
 .form-control[disabled],
 .form-control[readonly] {
-  background-color: #fff;
+    background-color: #fff;
 }
 
 .full-height {
-  height: 80vh;
+    height: 80vh;
 }
 
 .flex-center {
-  align-items: center;
-  display: flex;
-  justify-content: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 .position-ref {
-  position: relative;
+    position: relative;
 }
 
 .code {
-  border-right: 2px solid;
-  font-size: 26px;
-  padding: 0 15px 0 15px;
-  text-align: center;
+    border-right: 2px solid;
+    font-size: 26px;
+    padding: 0 15px 0 15px;
+    text-align: center;
 }
 
 .message {
-  font-size: 18px;
-  text-align: center;
+    font-size: 18px;
+    text-align: center;
 }
 
 .validate-messages {
-  color: #761b18;
-  background-color: #f9d6d5;
-  border-color: #f7c6c5;
-  border: 1px solid transparent;
-  border-radius: 0.25rem;
-  margin-top: 6px;
+    color: #761b18;
+    background-color: #f9d6d5;
+    border-color: #f7c6c5;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    margin-top: 6px;
 }
 
-.validate-messages ul{
-  list-style: none;
-  padding: 6px 12px;
-  display: table;
-  margin-bottom: 0;
+.validate-messages ul {
+    list-style: none;
+    padding: 6px 12px;
+    display: table;
+    margin-bottom: 0;
 }
 
-.validate-messages ul li{
-  display: table-row;
+.validate-messages ul li {
+    display: table-row;
 }
