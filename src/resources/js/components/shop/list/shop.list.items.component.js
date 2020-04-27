@@ -25,9 +25,9 @@ export const ShopListItems = () => {
                     </Link>
                 </td>
                 <td>
-                    <a href="#" onClick={handleClick.bind(this, shop.id)} style={disabled ? { pointerEvents: "none" } : null}>
+                    <Link onClick={handleClick.bind(this, shop.id)} style={disabled ? { pointerEvents: "none" } : null}>
                         <i className="fa fa-trash" aria-hidden="true" style={{ fontSize: "20px" }} />
-                    </a>
+                    </Link>
                 </td>
             </tr>
         );

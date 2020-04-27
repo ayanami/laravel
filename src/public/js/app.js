@@ -83121,16 +83121,16 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/components/custom/safety.submit.form.component.js":
-/*!************************************************************************!*\
-  !*** ./resources/js/components/custom/safety.submit.form.component.js ***!
-  \************************************************************************/
-/*! exports provided: SafetySubmitForm */
+/***/ "./resources/js/components/custom/double.submit.protect.form.component.js":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/custom/double.submit.protect.form.component.js ***!
+  \********************************************************************************/
+/*! exports provided: DoubleSubmitProtectForm */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SafetySubmitForm", function() { return SafetySubmitForm; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DoubleSubmitProtectForm", function() { return DoubleSubmitProtectForm; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
@@ -83142,12 +83142,12 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
-var SafetySubmitForm = function SafetySubmitForm(FormComponent) {
+var DoubleSubmitProtectForm = function DoubleSubmitProtectForm(FormComponent) {
   return function (_ref) {
     var register = _ref.register,
         errors = _ref.errors,
         handler = _ref.handler,
-        callback = _ref.callback;
+        listener = _ref.listener;
 
     var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
         _useState2 = _slicedToArray(_useState, 2),
@@ -83156,7 +83156,7 @@ var SafetySubmitForm = function SafetySubmitForm(FormComponent) {
 
     var submitHandler = function submitHandler(values) {
       setDisabled(true);
-      callback(values);
+      listener(values);
     };
 
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -83300,7 +83300,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/react-hook-form.es.js");
 /* harmony import */ var _validation_validator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../validation/validator */ "./resources/js/validation/validator.js");
-/* harmony import */ var _custom_safety_submit_form_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../custom/safety.submit.form.component */ "./resources/js/components/custom/safety.submit.form.component.js");
+/* harmony import */ var _custom_double_submit_protect_form_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../custom/double.submit.protect.form.component */ "./resources/js/components/custom/double.submit.protect.form.component.js");
 /* harmony import */ var _error_client_validate_messages_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../error/client.validate.messages.component */ "./resources/js/components/error/client.validate.messages.component.js");
 /* harmony import */ var _error_server_validate_messages_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../error/server.validate.messages.component */ "./resources/js/components/error/server.validate.messages.component.js");
 
@@ -83309,7 +83309,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var CustomForm = Object(_custom_safety_submit_form_component__WEBPACK_IMPORTED_MODULE_3__["SafetySubmitForm"])(function (_ref) {
+var Form = Object(_custom_double_submit_protect_form_component__WEBPACK_IMPORTED_MODULE_3__["DoubleSubmitProtectForm"])(function (_ref) {
   var disabled = _ref.disabled,
       setdisabled = _ref.setdisabled,
       register = _ref.register,
@@ -83385,11 +83385,11 @@ var ShopInput = function ShopInput(props) {
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "panel-body"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CustomForm, {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Form, {
     register: register,
     errors: errors,
     handler: handleSubmit,
-    callback: props.submit
+    listener: props.submit
   }));
 };
 
@@ -83569,8 +83569,7 @@ var ShopListItems = function ShopListItems() {
       style: {
         fontSize: "20px"
       }
-    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "#",
+    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       onClick: handleClick.bind(_this, shop.id),
       style: disabled ? {
         pointerEvents: "none"

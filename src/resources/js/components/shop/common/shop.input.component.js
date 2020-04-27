@@ -1,11 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as validators from '../../../validation/validator';
-import { SafetySubmitForm } from '../../custom/safety.submit.form.component';
+import { DoubleSubmitProtectForm } from '../../custom/double.submit.protect.form.component';
 import { ClientValidateMessages } from '../../error/client.validate.messages.component';
 import { ServerValidateMessages } from '../../error/server.validate.messages.component';
 
-const CustomForm = SafetySubmitForm(({ disabled, setdisabled, register, errors }) => {
+
+const Form = DoubleSubmitProtectForm(({ disabled, setdisabled, register, errors }) => {
     return (
         <div>
             <div className="form-group">
@@ -57,11 +58,10 @@ export const ShopInput = (props) => {
     });
     return (
         <div className="panel-body">
-            <CustomForm
-                register={register}
+            <Form register={register}
                 errors={errors}
                 handler={handleSubmit}
-                callback={props.submit} />
-        </div>
+                listener={props.submit} />
+        </div >
     );
 }
