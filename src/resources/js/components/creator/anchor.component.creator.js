@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 export const createAnchor = ChildComponent => {
     return (props) => {
 
-        const [disabled, setDisabled] = useState(false);
+        const [disabled, setDisable] = useState(false);
 
         const handler = () => {
-            setDisabled(true);
+            setDisable(true);
             props.listener?.();
         }
         return (
