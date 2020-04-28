@@ -1,12 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as validators from '../../../validation/validator';
-import { DoubleSubmitProtectForm } from '../../custom/double.submit.protect.form.component';
+import { createForm } from '../../creator/form.component.creator';
 import { ClientValidateMessages } from '../../error/client.validate.messages.component';
 import { ServerValidateMessages } from '../../error/server.validate.messages.component';
 
 
-const Form = DoubleSubmitProtectForm(({ disabled, setdisabled, register, errors }) => {
+const Form = createForm(({ disabled, setDisable, register, errors }) => {
     return (
         <div>
             <div className="form-group">
@@ -15,7 +15,7 @@ const Form = DoubleSubmitProtectForm(({ disabled, setdisabled, register, errors 
                     name="name"
                     type="text"
                     className="form-control"
-                    onChange={() => setdisabled(false)}
+                    onChange={() => setDisable(false)}
                     ref={register({
                         validate: {
                             required: validators.required,
@@ -31,7 +31,7 @@ const Form = DoubleSubmitProtectForm(({ disabled, setdisabled, register, errors 
                     name="rate"
                     type="text"
                     className="form-control"
-                    onChange={() => setdisabled(false)}
+                    onChange={() => setDisable(false)}
                     ref={register({
                         validate: {
                             required: validators.required,
@@ -49,7 +49,7 @@ const Form = DoubleSubmitProtectForm(({ disabled, setdisabled, register, errors 
 });
 
 export const ShopInput = (props) => {
-    const shop = props?.shop?.payload;
+    const shop = props?.shop?.data;
     const { register, errors, handleSubmit } = useForm({
         defaultValues: {
             name: shop?.name,

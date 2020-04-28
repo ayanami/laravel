@@ -1,23 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../actions/shop/shop.list.action';
 import { ErrorPage } from '../../components/error/error.page.component';
 import { ShopList } from '../../components/shop/list/shop.list.component';
+import { get } from '../../utils/axios.utils';
 
 class ShopListContainer extends Component {
-    componentDidMount() {
-        this.props.initShopList();
-    }
     render() {
+        const shops = get('/api/shop/list');
         return (
-            <ErrorPage>
-                <ShopList />
-            </ErrorPage>
+            <Suspense fallback={<p>Loading...</p>}>
+                <ErrorPage>
+                    <ShopList {...this.props} shops={shops} />
+                </ErrorPage>
+            </Suspense>
         );
     }
 }
 
-export default connect(
-    state => ({ shops: state.shops }),
-    actions
-)(ShopListContainer);
+export default connect()(ShopListContainer);

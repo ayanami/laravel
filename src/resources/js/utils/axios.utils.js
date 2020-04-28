@@ -1,67 +1,55 @@
 import wrapper from '../service/axios.wrapper';
 
-export const get = (path, callback) => {
-    console.log("path: ", path);
-    wrapper.get(path)
-    .then(response => {
-        console.log("response: ", response);
-        if (Object.keys(response).length) {
-            callback(response);
+const publish = (promise, callback) => {
+    let status = 'pending';
+    let result;
+
+    const suspend = promise.then(
+        response => {
+            if (response?.status === 200) {
+                console.log("response: ", response);
+                status = 'fulfilled';
+                result = response;
+                callback?.();
+            } else {
+                throw response;
+            }
+        }).catch(error => {
+            status = 'rejected';
+            result = error;
+        });
+
+    const subscribe = () => {
+        console.log("status: ", status)
+        if (status === 'pending') {
+            throw suspend;
+        } else {
+            return result;
         }
-        return { response }
-    })
-    .catch(error => {
-        console.log("error: ", error);
-        return { error }
-    });
+    };
+
+    return { subscribe };
 }
 
-export const post = (path, request, callback) => {
-    console.log("path: ", path);
-    console.log("request: ", request);
-    wrapper.post(path, request)
-    .then(response => {
-        console.log("response: ", response);
-        if (Object.keys(response).length) {
-            callback(response);
-        }
-        return { response }
-    })
-    .catch(error => {
-        console.log("error: ", error);
-        return { error }
-    });
+const subscribe = (promise, callback) => {
+    promise.then(
+        response => {
+            if (response?.status === 200) {
+                console.log("response: ", response);
+                callback?.();
+                return { response }
+            } else {
+                throw response;
+            }
+        }).catch(error => {
+            return { error }
+        });
 }
 
-export const patch = (path, request, callback) => {
-    console.log("path: ", path);
-    console.log("request: ", request);
-    wrapper.patch(path, request)
-    .then(response => {
-        console.log("response: ", response);
-        if (Object.keys(response).length) {
-            callback(response);
-        }
-        return { response }
-    })
-    .catch(error => {
-        console.log("error: ", error);
-        return { error }
-    });
-}
+export const get = (path, callback) => publish(wrapper.get(path), callback);
 
-export const del = (path, callback) => {
-    console.log("path: ", path);
-    wrapper.delete(path)
-    .then(response => {
-        console.log("response: ", response);
-        if (Object.keys(response).length) {
-            callback(response);
-        }
-        return { response }
-    })
-    .catch(error => {
-        console.log("error: ", error);
-        return { error }
-    });
-}
+export const post = (path, request, callback) => subscribe(wrapper.post(path, request), callback);
+
+export const patch = (path, request, callback) => subscribe(wrapper.patch(path, request), callback);
+
+export const del = (path, callback) => subscribe(wrapper.delete(path), callback);

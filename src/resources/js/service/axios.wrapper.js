@@ -1,10 +1,11 @@
 import axios from 'axios';
 import store from '../redux/store';
-import { notifyServerError } from '../actions/error/server.error.action';
+import { notifyServerError } from '../actions/server.error.action';
 
 const wrapper = axios.create();
 const onSuccess = response => response;
 const onError = error => {
+    console.log("http error: ", error.response);
     const { status, data } = error.response;
     store.dispatch(notifyServerError({ status, data }));
 }

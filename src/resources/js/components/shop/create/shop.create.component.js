@@ -1,15 +1,10 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import * as actions from '../../../actions/shop/shop.create.action';
 import { ShopInput } from '../common/shop.input.component';
+import { post } from '../../../utils/axios.utils';
 
 export const ShopCreate = (props) => {
-    const dispatch = useDispatch();
     const submit = values => {
-        dispatch(actions.postShopCreate(
-            values,
-            () => props.history.push('/shop/list')
-        ));
+        post('/api/shop/create', values, () => props.history.push('/shop/list'));
     }
     return (
         <div className="panel panel-default">

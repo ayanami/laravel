@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-export const DoubleSubmitProtectForm = ChildComponent => {
+export const createForm = ChildComponent => {
     return ({ register, errors, handler, listener }) => {
 
-        const [disabled, setDisabled] = useState(false);
+        const [disabled, setDisable] = useState(false);
 
         const submitHandler = (values) => {
-            setDisabled(true);
+            setDisable(true);
             listener(values);
         }
 
@@ -15,7 +15,7 @@ export const DoubleSubmitProtectForm = ChildComponent => {
                 submitHandler(values);
             })} >
                 <ChildComponent disabled={disabled}
-                    setdisabled={setDisabled}
+                    setDisable={setDisable}
                     register={register}
                     errors={errors} />
             </form>

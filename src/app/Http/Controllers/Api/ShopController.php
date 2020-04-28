@@ -11,6 +11,7 @@ class ShopController extends Controller
 {
     public function list()
     {
+        // abort(403, 'Unauthorized action.');
         // \Log::info(Post::all());
         return Shop::all();
     }

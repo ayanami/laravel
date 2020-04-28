@@ -1,27 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import { connect } from 'react-redux';
 import { ErrorPage } from '../../components/error/error.page.component';
 import { ShopEdit } from '../../components/shop/edit/shop.edit.component';
-import * as actions from '../../actions/shop/shop.edit.action';
+import { get } from '../../utils/axios.utils';
 
 class ShopEditContainer extends Component {
-    componentDidMount() {
-        this.props.initShopEdit(this.props.match.params.id);
-    }
     render() {
-        if (this.props.shop.type === actions.GET_SHOP_EDIT) {
-            return (
+        const shop = get('/api/shop/edit/' + this.props.match.params.id);
+        return (
+            <Suspense fallback={<p>Loading...</p>}>
                 <ErrorPage>
-                    <ShopEdit {...this.props} />
+                    <ShopEdit {...this.props} shop={shop} />
                 </ErrorPage>
-            );
-        } else {
-            return <p>Loading...</p>
-        }
+            </Suspense>
+        );
     }
 }
 
-export default connect(
-    state => ({ shop: state.shop }),
-    actions
-)(ShopEditContainer);
+export default connect()(ShopEditContainer);

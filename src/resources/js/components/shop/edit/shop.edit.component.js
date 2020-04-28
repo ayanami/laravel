@@ -1,22 +1,16 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import * as actions from '../../../actions/shop/shop.edit.action';
 import { ShopInput } from '../common/shop.input.component';
+import { patch } from '../../../utils/axios.utils';
 
 export const ShopEdit = (props) => {
-
-    const dispatch = useDispatch();
+    const shop = props.shop.subscribe();
     const submit = values => {
-        dispatch(actions.patchShopEdit(
-            props.match.params.id,
-            values,
-            () => props.history.push('/shop/list')
-        ));
+        patch('/api/shop/edit/' + props.match.params.id, values, () => props.history.push('/shop/list'));
     }
     return (
         <div className="panel panel-default">
             <div className="panel-heading">店舗を変更する</div>
-            <ShopInput {...props} submit={submit} />
+            <ShopInput {...props} shop={shop} submit={submit} />
         </div>
     );
 }
