@@ -1,29 +1,55 @@
-import client from '../service/axios.client';
-import { log } from './log.utils';
+import wrapper from '../service/axios.wrapper';
 
-export const get = (path, callback) => client
-    .get(path)
-    .then(response => {
-        log({ response: response });
-        if (Object.keys(response).length) {
-            callback(response);
-        }
-        return { response }
-    })
-    .catch(error => {
-        log({ error: error });
-        return { error }
-    });
+const publish = (promise, callback) => {
+    let status = 'pending';
+    let result;
 
-export const post = (path, request, callback) => client.post(path, request)
-    .then(response => {
-        log({ response: response });
-        if (Object.keys(response).length) {
-            callback(response);
+    const suspend = promise.then(
+        response => {
+            if (response?.status === 200) {
+                console.log("response: ", response);
+                status = 'fulfilled';
+                result = response;
+                callback?.();
+            } else {
+                throw response;
+            }
+        }).catch(error => {
+            status = 'rejected';
+            result = error;
+        });
+
+    const subscribe = () => {
+        console.log("status: ", status)
+        if (status === 'pending') {
+            throw suspend;
+        } else {
+            return result;
         }
-        return { response }
-    })
-    .catch(error => {
-        log({ error: error });
-        return { error }
-    });
+    };
+
+    return { subscribe };
+}
+
+const subscribe = (promise, callback) => {
+    promise.then(
+        response => {
+            if (response?.status === 200) {
+                console.log("response: ", response);
+                callback?.();
+                return { response }
+            } else {
+                throw response;
+            }
+        }).catch(error => {
+            return { error }
+        });
+}
+
+export const get = (path, callback) => publish(wrapper.get(path), callback);
+
+export const post = (path, request, callback) => subscribe(wrapper.post(path, request), callback);
+
+export const patch = (path, request, callback) => subscribe(wrapper.patch(path, request), callback);
+
+export const del = (path, callback) => subscribe(wrapper.delete(path), callback);

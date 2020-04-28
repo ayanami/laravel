@@ -17,8 +17,7 @@ ENV HTTP_PROXY_AUTH=basic:*:user:password
 RUN set -eux && \
   apk add --update-cache --no-cache --virtual=.build-dependencies tzdata && \
   cp /usr/share/zoneinfo/${TZ} /etc/localtime && \
-  apk del .build-dependencies && \
-  apk add --update npm && \
+  apk add --update-cache npm && \
   docker-php-ext-install bcmath pdo_mysql
 
 # =================================================================

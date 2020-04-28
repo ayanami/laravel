@@ -1,25 +1,27 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Switch } from 'react-router';
 import { ConnectedRouter } from 'connected-react-router';
 import store from './redux/store';
 import { history } from './react/history';
-import { RouteClient } from './components/route.client.component';
 import ShopListContainer from './containers/shop/shop.list.container';
 import ShopCreateContainer from './containers/shop/shop.create.container';
+import ShopEditContainer from './containers/shop/shop.edit.container';
 
-const shopRoot = document.getElementById('shopRoot');
-if (shopRoot) {
+const root = document.getElementById('root');
+if (root) {
     render(
         <Provider store={store}>
             <ConnectedRouter history={history}>
                 <Switch>
-                    <RouteClient exact path="/shop/list" component={ShopListContainer} />
-                    <RouteClient path="/shop/create" component={ShopCreateContainer} />
+                    <Route path="/shop/list" component={ShopListContainer} />
+                    <Route path="/shop/create" component={ShopCreateContainer} />
+                    <Route path="/shop/edit/:id" component={ShopEditContainer} />
                 </Switch>
             </ConnectedRouter>
         </Provider>,
-        shopRoot
+        root
     );
 }
