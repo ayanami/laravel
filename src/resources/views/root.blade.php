@@ -2,6 +2,6 @@
 
 @section('content')
 <div class="container">
-    <div id="shopRoot"></div>
+    <div id="root"></div>
 </div>
 @endsection

@@ -1,16 +1,14 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { attributes } from '../../validation/attributes';
 
-export const ClientValidateMessages = (props) => {
-    const form = useSelector(state => state.form[props.data]);
-    if (!form || !form.submitFailed || !form.syncErrors[props.name]) {
+export const ClientValidateMessages = ({ name, errors }) => {
+    if (!(name in errors)) {
         return null;
     }
+    const message = errors[name].message.replace(':attribute', attributes[name]);
     return (
         <div className="validate-messages">
-            <ul>
-                <li>{form.syncErrors[props.name]}</li>
-            </ul>
+            <ul><li>{message}</li></ul>
         </div>
     );
 }

@@ -20,9 +20,13 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->middleware('verified');
 
 Route::get('/shop/list', function() {
-    return view('shop/root');
+    return view('root');
 })->middleware('verified')->name('shop.list');
 
 Route::get('/shop/create', function() {
-    return view('shop/root');
+    return view('root');
 })->middleware('verified')->name('shop.create');
+
+Route::get('/shop/edit/{id}', function() {
+    return view('root');
+})->middleware('verified')->name('shop.edit');

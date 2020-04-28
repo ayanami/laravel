@@ -1,20 +1,20 @@
 import React, { Component, Suspense } from 'react';
 import { connect } from 'react-redux';
 import { ErrorPage } from '../../components/error/error.page.component';
-import { ShopList } from '../../components/shop/list/shop.list.component';
+import { ShopEdit } from '../../components/shop/edit/shop.edit.component';
 import { get } from '../../utils/axios.utils';
 
-class ShopListContainer extends Component {
+class ShopEditContainer extends Component {
     render() {
-        const shops = get('/api/shop/list');
+        const shop = get('/api/shop/edit/' + this.props.match.params.id);
         return (
             <Suspense fallback={<p>Loading...</p>}>
                 <ErrorPage>
-                    <ShopList {...this.props} shops={shops} />
+                    <ShopEdit {...this.props} shop={shop} />
                 </ErrorPage>
             </Suspense>
         );
     }
 }
 
-export default connect()(ShopListContainer);
+export default connect()(ShopEditContainer);
