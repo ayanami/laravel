@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import { createAnchor } from '../../creator/anchor.component.creator';
 import { ShopListItems } from './shop.list.items.component';
 
