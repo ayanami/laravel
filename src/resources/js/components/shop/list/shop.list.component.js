@@ -5,7 +5,7 @@ import { ShopListItems } from './shop.list.items.component';
 const AddShop = createAnchor(() => <span>追加</span>);
 
 export const ShopList = props => {
-    const shops = props.shops.subscribe();
+    const shops = props.publisher.subscribe();
     return (
         <div className="panel panel-default">
             <div className="panel-heading">店舗</div>

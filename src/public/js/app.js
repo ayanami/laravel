@@ -79603,7 +79603,7 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 
 var ShopEdit = function ShopEdit(props) {
-  var shop = props.shop.subscribe();
+  var shop = props.publisher.subscribe();
 
   var submit = function submit(values) {
     Object(_utils_axios_utils__WEBPACK_IMPORTED_MODULE_2__["patch"])('/api/shop/edit/' + props.match.params.id, values, function () {
@@ -79646,7 +79646,7 @@ var AddShop = Object(_creator_anchor_component_creator__WEBPACK_IMPORTED_MODULE_
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u8FFD\u52A0");
 });
 var ShopList = function ShopList(props) {
-  var shops = props.shops.subscribe();
+  var shops = props.publisher.subscribe();
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "panel panel-default"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -79843,11 +79843,11 @@ function (_Component) {
   _createClass(ShopEditContainer, [{
     key: "render",
     value: function render() {
-      var shop = Object(_utils_axios_utils__WEBPACK_IMPORTED_MODULE_4__["get"])('/api/shop/edit/' + this.props.match.params.id);
+      var publisher = Object(_utils_axios_utils__WEBPACK_IMPORTED_MODULE_4__["get"])('/api/shop/edit/' + this.props.match.params.id);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Suspense"], {
         fallback: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Loading...")
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_error_error_page_component__WEBPACK_IMPORTED_MODULE_2__["ErrorPage"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_shop_edit_shop_edit_component__WEBPACK_IMPORTED_MODULE_3__["ShopEdit"], _extends({}, this.props, {
-        shop: shop
+        publisher: publisher
       }))));
     }
   }]);
@@ -79914,11 +79914,11 @@ function (_Component) {
   _createClass(ShopListContainer, [{
     key: "render",
     value: function render() {
-      var shops = Object(_utils_axios_utils__WEBPACK_IMPORTED_MODULE_4__["get"])('/api/shop/list');
+      var publisher = Object(_utils_axios_utils__WEBPACK_IMPORTED_MODULE_4__["get"])('/api/shop/list');
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Suspense"], {
         fallback: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Loading...")
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_error_error_page_component__WEBPACK_IMPORTED_MODULE_2__["ErrorPage"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_shop_list_shop_list_component__WEBPACK_IMPORTED_MODULE_3__["ShopList"], _extends({}, this.props, {
-        shops: shops
+        publisher: publisher
       }))));
     }
   }]);
@@ -80095,7 +80095,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var wrapper = axios__WEBPACK_IMPORTED_MODULE_0___default.a.create();
+var axiosWrapper = axios__WEBPACK_IMPORTED_MODULE_0___default.a.create();
 
 var onSuccess = function onSuccess(response) {
   return response;
@@ -80112,9 +80112,9 @@ var onError = function onError(error) {
   }));
 };
 
-wrapper.defaults.headers.common['X-CSRF-Token'] = document.getElementsByName('csrf-token')[0].content;
-wrapper.interceptors.response.use(onSuccess, onError);
-/* harmony default export */ __webpack_exports__["default"] = (wrapper);
+axiosWrapper.defaults.headers.common['X-CSRF-Token'] = document.getElementsByName('csrf-token')[0].content;
+axiosWrapper.interceptors.response.use(onSuccess, onError);
+/* harmony default export */ __webpack_exports__["default"] = (axiosWrapper);
 
 /***/ }),
 
