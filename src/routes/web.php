@@ -19,14 +19,18 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->middleware('verified');
 
-Route::get('/shop/list', function() {
+Route::get('/shop/list', function () {
     return view('root');
 })->middleware('verified')->name('shop.list');
 
-Route::get('/shop/create', function() {
+Route::get('/shop/create', function () {
     return view('root');
 })->middleware('verified')->name('shop.create');
 
-Route::get('/shop/edit/{id}', function() {
+Route::get('/shop/edit/{id}', function () {
     return view('root');
 })->middleware('verified')->name('shop.edit');
+
+Route::get('/score', function () {
+    return view('root');
+})->middleware('verified')->name('score');
