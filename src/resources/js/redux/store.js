@@ -4,6 +4,4 @@ import { routerMiddleware } from 'connected-react-router';
 import { reducer } from './reducer';
 import { history } from '../react/history';
 
-const store = createStore(reducer(history), applyMiddleware(createLogger(), routerMiddleware(history)));
-
-export default store;
+export const store = createStore(reducer(history), applyMiddleware(createLogger(), routerMiddleware(history)));

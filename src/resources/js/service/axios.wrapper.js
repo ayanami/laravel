@@ -1,5 +1,5 @@
 import axios from 'axios';
-import store from '../redux/store';
+import { store } from '../redux/store';
 import { notifyServerError } from '../actions/server.error.action';
 
 const wrapper = axios.create();

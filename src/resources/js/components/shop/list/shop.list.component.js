@@ -4,7 +4,7 @@ import { ShopListItems } from './shop.list.items.component';
 
 const AddShop = createAnchor(() => <span>追加</span>);
 
-export const ShopList = (props) => {
+export const ShopList = props => {
     const shops = props.shops.subscribe();
     return (
         <div className="panel panel-default">

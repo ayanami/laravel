@@ -13,7 +13,7 @@ const DeleteShop = createAnchor(() => {
     );
 });
 
-export const ShopListItems = (props) => {
+export const ShopListItems = props => {
     const listener = (id) => {
         del('/api/shop/delete/' + id, () => {
             props.history.push('/shop/list');
