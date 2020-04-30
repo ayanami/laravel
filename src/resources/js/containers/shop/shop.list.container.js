@@ -6,11 +6,11 @@ import { get } from '../../utils/axios.utils';
 
 class ShopListContainer extends Component {
     render() {
-        const shops = get('/api/shop/list');
+        const publisher = get('/api/shop/list');
         return (
             <Suspense fallback={<p>Loading...</p>}>
                 <ErrorPage>
-                    <ShopList {...this.props} shops={shops} />
+                    <ShopList {...this.props} publisher={publisher} />
                 </ErrorPage>
             </Suspense>
         );

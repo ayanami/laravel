@@ -6,11 +6,11 @@ import { get } from '../../utils/axios.utils';
 
 class ShopEditContainer extends Component {
     render() {
-        const shop = get('/api/shop/edit/' + this.props.match.params.id);
+        const publisher = get('/api/shop/edit/' + this.props.match.params.id);
         return (
             <Suspense fallback={<p>Loading...</p>}>
                 <ErrorPage>
-                    <ShopEdit {...this.props} shop={shop} />
+                    <ShopEdit {...this.props} publisher={publisher} />
                 </ErrorPage>
             </Suspense>
         );

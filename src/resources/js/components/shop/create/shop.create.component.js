@@ -2,7 +2,7 @@ import React from 'react';
 import { ShopInput } from '../common/shop.input.component';
 import { post } from '../../../utils/axios.utils';
 
-export const ShopCreate = (props) => {
+export const ShopCreate = props => {
     const submit = values => {
         post('/api/shop/create', values, () => props.history.push('/shop/list'));
     }

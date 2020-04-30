@@ -1,4 +1,4 @@
-import wrapper from '../service/axios.wrapper';
+import axiosWrapper from '../service/axios.wrapper';
 
 const publish = (promise, callback) => {
     let status = 'pending';
@@ -46,10 +46,10 @@ const subscribe = (promise, callback) => {
         });
 }
 
-export const get = (path, callback) => publish(wrapper.get(path), callback);
+export const get = (path, callback) => publish(axiosWrapper.get(path), callback);
 
-export const post = (path, request, callback) => subscribe(wrapper.post(path, request), callback);
+export const post = (path, request, callback) => subscribe(axiosWrapper.post(path, request), callback);
 
-export const patch = (path, request, callback) => subscribe(wrapper.patch(path, request), callback);
+export const patch = (path, request, callback) => subscribe(axiosWrapper.patch(path, request), callback);
 
-export const del = (path, callback) => subscribe(wrapper.delete(path), callback);
+export const del = (path, callback) => subscribe(axiosWrapper.delete(path), callback);

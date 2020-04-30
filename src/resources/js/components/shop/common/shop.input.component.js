@@ -2,44 +2,38 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as validators from '../../../validation/validator';
 import { createForm } from '../../creator/form.component.creator';
-import { ClientValidateMessages } from '../../error/client.validate.messages.component';
-import { ServerValidateMessages } from '../../error/server.validate.messages.component';
-
+import { InputText } from '../../common/input.text.component';
 
 const Form = createForm(({ disabled, setDisable, register, errors }) => {
     return (
         <div>
             <div className="form-group">
                 <label htmlFor="name">名前</label>
-                <input id={'name'}
+                <InputText setDisable={setDisable}
+                    id="name"
                     name="name"
-                    type="text"
                     className="form-control"
-                    onChange={() => setDisable(false)}
-                    ref={register({
+                    validate={register({
                         validate: {
                             required: validators.required,
                             maxLength: validators.maxLength(50)
                         }
-                    })} />
-                <ClientValidateMessages name="name" errors={errors} />
-                <ServerValidateMessages name="name" />
+                    })}
+                    errors={errors} />
             </div>
             <div className="form-group">
                 <label htmlFor="rate">レート</label>
-                <input id={'rate'}
+                <InputText setDisable={setDisable}
+                    id="rate"
                     name="rate"
-                    type="text"
                     className="form-control"
-                    onChange={() => setDisable(false)}
-                    ref={register({
+                    validate={register({
                         validate: {
                             required: validators.required,
                             regex: validators.regex(/^([1-9][0-9]{0,1}|0)(\.[0-9]{1})?$/)
                         }
-                    })} />
-                <ClientValidateMessages name="rate" errors={errors} />
-                <ServerValidateMessages name="rate" />
+                    })}
+                    errors={errors} />
             </div>
             <div className="text-right">
                 <button type="submit" className="btn btn-primary" disabled={disabled}>送信</button>
@@ -48,7 +42,7 @@ const Form = createForm(({ disabled, setDisable, register, errors }) => {
     )
 });
 
-export const ShopInput = (props) => {
+export const ShopInput = props => {
     const shop = props?.shop?.data;
     const { register, errors, handleSubmit } = useForm({
         defaultValues: {
