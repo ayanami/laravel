@@ -2,8 +2,8 @@ import React from 'react';
 import { ShopInput } from '../common/shop.input.component';
 import { patch } from '../../../utils/axios.utils';
 
-export const ShopEdit = (props) => {
-    const shop = props.shop.subscribe();
+export const ShopEdit = props => {
+    const shop = props.publisher.subscribe();
     const submit = values => {
         patch('/api/shop/edit/' + props.match.params.id, values, () => props.history.push('/shop/list'));
     }
