@@ -6,6 +6,9 @@ services:
             args:
                 - TZ=${TZ}
         container_name: laravel_app
+        networks: 
+            - external-link
+            - internal-link
         volumes:
             - ./src:/work
             - ./logs:/work/storage/logs
@@ -25,6 +28,8 @@ services:
     web:
         image: nginx:1.17-alpine
         container_name: laravel_web
+        networks: 
+            - internal-link
         depends_on:
             - app
         ports:
@@ -38,11 +43,15 @@ services:
     mail:
         image: mailhog/mailhog
         container_name: laravel_mail
+        networks: 
+            - internal-link
         ports:
             - ${MAILHOG_PORT}:8025
     db:
         image: mysql:8.0
         container_name: laravel_db
+        networks: 
+            - internal-link
         ports:
             - ${DB_PORT}:3306
         volumes:
@@ -55,5 +64,14 @@ services:
             - MYSQL_PASSWORD=${DB_PASS}
             - MYSQL_ROOT_PASSWORD=${DB_PASS}
             - TZ=${TZ}
+networks: 
+    default:
+        external: 
+            name: bridge
+    internal-link:
+        name: laravel_network
+    external-link:
+        external: 
+            name: wp_network
 volumes:
     db-store:

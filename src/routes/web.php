@@ -34,3 +34,5 @@ Route::get('/shop/edit/{id}', function () {
 Route::get('/score', function () {
     return view('root');
 })->middleware('verified')->name('score');
+
+Route::get('/wordpress/{id}', 'WordpressController@get');

@@ -26,3 +26,6 @@ $ npm install --save-dev react-hook-form
 
 ## update redux component
 $ npm install --save-dev redux react-redux redux-persist redux-actions redux-logger
+
+## update guzzle
+$ composer require guzzlehttp/guzzle
