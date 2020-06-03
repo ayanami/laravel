@@ -3,7 +3,6 @@ import { ClientValidateMessages } from '../error/client.validate.messages.compon
 import { ServerValidateMessages } from '../error/server.validate.messages.component';
 
 export const InputText = props => {
-    console.log("hoge", props);
     return (
         <div>
             <input type="text"

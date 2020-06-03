@@ -35,4 +35,6 @@ Route::get('/score', function () {
     return view('root');
 })->middleware('verified')->name('score');
 
-Route::get('/wordpress/{id}', 'WordpressController@get');
+Route::get('/wordpress/{id}', function () {
+    return view('root');
+})->middleware('verified')->name('wordpress');

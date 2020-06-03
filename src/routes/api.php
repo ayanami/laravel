@@ -23,5 +23,6 @@ Route::group(['middleware' => 'api'], function() {
     Route::get('/shop/edit/{id}', 'Api\ShopController@get');
     Route::patch('/shop/edit/{id}', 'Api\ShopController@edit');
     Route::delete('/shop/delete/{id}', 'Api\ShopController@delete');
+    Route::get('/wordpress/{id}', 'Api\WordpressController@get');
 });
 
